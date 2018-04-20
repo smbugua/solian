@@ -21,8 +21,8 @@ $result=mysql_query($query);
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Patient Name</th>
-                  <th>Patient Tel</th>
+                  <th>Client Name</th>
+                  <th>Client Tel</th>
                   <th>Total Cost</th>
                   <th>Dateadded</th>
                   <th>View</th>

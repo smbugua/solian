@@ -9,18 +9,18 @@ include('header.php');
       <div class="col-md-6">
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"> <i class="icon-info-sign"></i> </span>
-            <h5>Add patient Detaiils</h5>
+            <h5>Add Client Detaiils</h5>
           </div>
           <div class="widget-content nopadding">
             <form class="form-horizontal" method="post" action="patientclass.php?action=aadpatient" name="basic_validate" id="basic_validate" novalidate="novalidate">
               <div class="control-group">
-                <label class="control-label">Patient Name</label>
+                <label class="control-label">Client Name</label>
                 <div class="controls">
                   <input type="text" class="form-control" name="name" id="required">
                 </div>
               </div>
               <div class="control-group">
-                <label class="control-label">Patient Email</label>
+                <label class="control-label">Client Email</label>
                 <div class="controls">
                   <input type="email" class="form-control" name="email" id="email">
                 </div>
