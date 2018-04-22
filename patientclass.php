@@ -123,6 +123,20 @@ if ($_GET['action']=="aadpatient") {
 	mysql_query("INSERT INTO appointments(patientid,notes,type,datescheduled)values('$id','$notes','$type','$date')");
 	echo "<script>alert('Successfully Added!')</script>";
 	echo "<script>location.replace('appointments.php')</script>";
+}elseif ($_GET['action']=="editpatient") {
+	$name=$_POST['name'];
+	$email=$_POST['email'];
+	$tel=$_POST['tel'];
+	$addr=$_POST['addr'];
+	$town=$_POST['town'];
+	$idno=$_POST['idno'];
+	$sex=$_POST['sex'];
+	$notes=$_POST['notes'];
+	$dob=$_POST['date'];
+	$id=$_REQUEST['id'];
+	mysql_query("UPDATE patients set name='$name',aadress='$addr',town='$town',email='$email',tel='$tel',idno='$idno',sex='$sex',dob='$dob' where id='$id' ");
+
+	echo "<script>location.replace('patients.php')</script>";
 }
 
 
