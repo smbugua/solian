@@ -145,8 +145,25 @@ if ($_GET['action']=="aadpatient") {
 	mysql_query("UPDATE products set productname='$name',itemtypeid='$productid',brandid='$brandid' where id='$id' ");
 	echo "<script>location.replace('products.php')</script>";
 
+}elseif ($_GET['action']=="editbrand") {
+	$id=$_REQUEST['id'];
+	$name=$_POST['name'];
+	mysql_query("UPDATE brand set name='$name' where id='$id' ");
+	echo "<script>location.replace('brands.php')</script>";
+}elseif ($_GET['action']=="editproject") {
+	$id=$_REQUEST['id'];
+	$name=$_POST['name'];
+	mysql_query("UPDATE itemtype set name='$name' where id='$id' ");
+	echo "<script>location.replace('itemtypes.php')</script>";
+}elseif ($_GET['action']=="delete_project") {
+	$id=$_REQUEST['id'];
+	mysql_query("DELETE FROM itemtype where id='$id'");
+	echo "<script>location.replace('itemtypes.php')</script>";
+}elseif ($_GET['action']=="delete_city") {
+	$id=$_REQUEST['id'];
+	mysql_query("DELETE FROM brand where id='$id'");
+	echo "<script>location.replace('brands.php')</script>";
 }
-
 
 
 
