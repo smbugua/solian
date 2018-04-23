@@ -142,13 +142,16 @@ $total=$inv['invoicetotal'];
                     <option value="<?php echo $productrow[0]?>"><?php echo $productrow[1]?></option>
                     <?php }?> 
                     </select>
+
+                  <label class="control-label">Quantity</label>
                     <input type="text" name="quantity" class="form-control">
+                  <label class="control-label">Price</label>
+                    <input type="text" name="price" class="form-control">
                    </div>
                 </div>
-              
-                  
                 </div>
               <div class="modal-footer"> <button type="submit" class="btn btn-primary" >Confirm</button> </div>
+            </form>
             </div>
 
 <script src="js/jquery.min.js"></script> 

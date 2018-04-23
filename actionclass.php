@@ -13,7 +13,7 @@ $productid=$_POST['product'];
 $quantity=$_POST['quantity'];
 $prices=mysql_fetch_array(mysql_query("SELECT sp.price as price from stockprice sp inner join products p on p.id=sp.productid order by sp.dateadded desc limit 1 "));
 //get pricing
-$price=$prices['price'];
+$price=$_POST['price'];
 $total=$price*$quantity;
 //get current invoice total
 $invoice=mysql_fetch_array(mysql_query("SELECT i.totalcost as total from invoices i where i.id='$id' "));
