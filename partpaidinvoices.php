@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-$query="SELECT inv.id as id, inv.totalcost as tot ,inv.dateadded as dateadded,p.name as name , p.tel as tel from invoices inv inner join patients p on p.id=inv.patientid where status='1' order by  inv.dateadded  asc";
+$query="SELECT inv.id as id, inv.totalcost as tot ,inv.dateadded as dateadded,p.name as name , p.tel as tel from invoices inv inner join patients p on p.id=inv.patientid where inv.status='1' order by  inv.dateadded  asc";
 $result=mysql_query($query);
 ?>
   <div id="content-header">
