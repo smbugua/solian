@@ -23,8 +23,8 @@ $result=mysql_query($query);
                 <tr>
                   <th>#</th>
                   <th>Name</th>
-                  <th>Product Type Name</th>
-                  <th>Brand Name</th>
+                  <th>City</th>
+                  <th>Project</th>
                   <th>Restock</th>
                   <th>Edit</th>
                   <th>Delete</th>
