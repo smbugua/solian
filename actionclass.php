@@ -67,5 +67,10 @@ mysql_query("INSERT INTO receipts (invoiceid,amountdue,amountpaid,balance,paymen
 echo "<script>alert('Payment Added!')</script>";
 		echo "<script>location.replace('receipts.php')</script>";
 
+}elseif ($_GET['action']=="void") {
+	$id=$_REQUEST['id'];
+	mysql_query("UPDATE invoices set status='5' where id='$id'");
+	echo "<script>alert('Invoice Voided!')</script>";
+		echo "<script>location.replace('voidedinvoices.php')</script>";
 }
 ?>

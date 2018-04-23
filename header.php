@@ -107,9 +107,11 @@ echo <<<HeaderFunction
    <li class="submenu"> <a href="#"><i class="icon icon-money"></i> <span>Accounting</span> <span class="label label-important"></span></a>
       <ul>
         <li><a href="searchpatient.php">Add Invoice</a></li>
+        <li><a href="allinvoices.php">All Invoice</a></li>
         <li><a href="unpaidinvoices.php">UnPaid Invoices</a></li>
         <li><a href="partpaidinvoices.php">Partially Paid Invoices</a></li>
         <li><a href="paidinvoices.php">Paid Invoices</a></li>
+        <li><a href="voidedinvoices.php">Voided Invoice</a></li>
         <li><a href="receipts.php">Receipts</a></li>
       </ul>
     </li>

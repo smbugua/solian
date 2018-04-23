@@ -124,15 +124,18 @@ $status=$inv['status'];
                 <div class="pull-right">
                   <h4><span>Amount Due:</span><?php echo $total ?></h4>
                   <br>
-                    <?php if($status!="2"){?>
+                    <?php if($status=="0" || $status=="1"){?>
                     <a href="#myAlert" data-toggle="modal" class="btn btn-danger btn-large pull-right"><i class="icon icon-money"></i> Pay Invoice</a> 
                     <?php 
                   }elseif ($status=="2") {?>
                      <div class="alert alert-success alert-block"> <a class="close" data-dismiss="alert" href="#">×</a>
               <h4 class="alert-heading">Paid Invoice!</h4>
               Invoice is already Paid</div>
-                  <?php }?>
-
+                  <?php }elseif($status=="5"){?>
+                     <div class="alert alert-warning alert-block"> <a class="close" data-dismiss="alert" href="#">×</a>
+              <h4 class="alert-heading">Voided Invoice!</h4>
+              Invoice is Cancelled</div>
+              <?php }?>
                 
                      </div>
 

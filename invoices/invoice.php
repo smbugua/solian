@@ -39,15 +39,18 @@ $invoice = new Konekt\PdfInvoice\InvoicePrinter();
   $invoice->addTotal("VAT 16%",$tax);
   $invoice->addTotal("Total due",$total,true);
   /* Set badge */ 
-  if ($status=0) {
+  if ($status=="0") {
     
   $invoice->addBadge("UnPaid");
-  }elseif ($status=1) {
+  }elseif ($status=="1") {
     
   $invoice->addBadge("Partial Payment Paid");
-  }elseif ($status=2) {
+  }elseif ($status=="2") {
    
   $invoice->addBadge("Payment Paid");
+  }elseif ($status=="5") {
+   
+  $invoice->addBadge("Cancelled");
   }
   /* Add title */
   $invoice->addTitle("Freedom To Live");
