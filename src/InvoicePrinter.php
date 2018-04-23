@@ -51,7 +51,7 @@ class InvoicePrinter extends FPDF
      * Class Constructor                     *
      * param : Page Size , Currency, Language *
      ******************************************/
-    public function __construct($size = 'A4', $currency = '$', $language = 'en')
+    public function __construct($size = 'A4', $currency = 'KES ', $language = 'en')
     {
         $this->columns            = 4;
         $this->items              = [];
