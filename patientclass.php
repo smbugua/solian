@@ -163,7 +163,12 @@ if ($_GET['action']=="aadpatient") {
 	$id=$_REQUEST['id'];
 	mysql_query("DELETE FROM brand where id='$id'");
 	echo "<script>location.replace('brands.php')</script>";
+}elseif ($_GET['action']=="delete_patient") {
+	$id=$_REQUEST['id'];
+	mysql_query("UPDATE patients SET status='1' where id='$id'");
+	echo "<script>location.replace('patients.php')</script>";
 }
+
 
 
 

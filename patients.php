@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-$query="SELECT * from patients order by  name asc";
+$query="SELECT * from patients where status='0' order by  name asc";
 $result=mysql_query($query);
 ?>
   <div id="content-header">
