@@ -41,7 +41,7 @@ $date=date('Y-m-d');
 		*1-MPesa Paybill
 		*2-Cheque
 		*3-Bank Ledger/Cash
-		*4-Insuarance
+		*4-wire
 		*/
 //INSERT INTO RECEIPTS
 if ($mode=="1") {
@@ -53,7 +53,7 @@ mysql_query("INSERT INTO receipts (invoiceid,amountdue,amountpaid,balance,paymen
 mysql_query("INSERT INTO receipts (invoiceid,amountdue,amountpaid,balance,paymentmethod,bankledger,recordedby,dateadded)VALUES('$id','$due','$paid','$bal','$mode','$ref','$user','$date')");
 
 }elseif ($mode=="4") {
-mysql_query("INSERT INTO receipts (invoiceid,amountdue,amountpaid,balance,paymentmethod,insuarance,recordedby,dateadded)VALUES('$id','$due','$paid','$bal','$mode','$ref','$user','$date')");
+mysql_query("INSERT INTO receipts (invoiceid,amountdue,amountpaid,balance,paymentmethod,wire,recordedby,dateadded)VALUES('$id','$due','$paid','$bal','$mode','$ref','$user','$date')");
 }	
 //update invoice status 1 is partial 2 is fully paid
 		if ($bal>0) {
