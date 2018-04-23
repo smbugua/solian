@@ -49,7 +49,7 @@ $result=mysql_query($query);
                   <td><?php echo $row['dob']?></td>
                   <td><?php echo $row['datecreated']?></td>                  
                   <td><a href="editpatient.php?id=<?php echo $row['id']?>" class="btn btn-primary btn-mini"><i class="icon icon-edit"></i> Edit</a> </td>
-                  <td><a href="actionclass.php?action=delete_patient&&id=<?php echo $row['id']?>" class="btn btn-danger btn-mini"><i class="icon icon-trash"></i> Delete</a> </td>
+                  <td><a href="patientclass.php?action=delete_patient&&id=<?php echo $row['id']?>" class="btn btn-danger btn-mini"><i class="icon icon-trash"></i> Delete</a> </td>
                 </tr>
                 <?php }?>
               </tbody>
