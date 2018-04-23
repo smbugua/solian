@@ -137,6 +137,14 @@ if ($_GET['action']=="aadpatient") {
 	mysql_query("UPDATE patients set name='$name',aadress='$addr',town='$town',email='$email',tel='$tel',idno='$idno',sex='$sex',dob='$dob' where id='$id' ");
 
 	echo "<script>location.replace('patients.php')</script>";
+}elseif ($_GET['action']=="editproduct") {
+	$id=$_REQUEST['id'];
+	$name=$_REQUEST['name'];
+	$brandid=$_REQUEST['brandid'];
+	$productid=$_REQUEST['productid'];
+	mysql_query("UPDATE products set productname='$name',itemtypeid='$productid',brandid='$brandid' where id='$id' ");
+	echo "<script>location.replace('products.php')</script>";
+
 }
 
 
