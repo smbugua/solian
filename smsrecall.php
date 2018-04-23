@@ -17,7 +17,7 @@ $name=$query['name'];
 $dateadded=$query['datea'];
 $recipients=$phone;
 // And of course we want our recipients to know what we really do
-$message    ="Hello ".$name." your appointment on".$dateadded." has been booked.Vijay Opticians Thanks you for your Business!.";
+$message    ="Hello ".$name." your appointment on".$dateadded." has been booked.Solian Investments Thanks you for your Business!.";
 //$from = "GALLERIA";
 // Create a new instance of our awesome gateway class
 $gateway    = new AfricasTalkingGateway($username, $apikey);

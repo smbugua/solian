@@ -62,7 +62,7 @@ $total=$inv['invoicetotal'];
                       <td>Issue Date:</td>
                       <td><strong><input type="date" name="dateadded" value="<?php echo $inv['dateadded']?>" readonly=""></strong></td>
                     </tr>
-                    <td class="width30">Patient:</td>
+                    <td class="width30">Client:</td>
                     <td class="width70">
                      <input type="text" name="name" value="<?php echo $inv['name']?>" readonly="">
 

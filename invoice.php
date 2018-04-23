@@ -118,6 +118,9 @@ $status=$inv['status'];
                     </tr>
                   </tbody>
                 </table>
+                <div class="pull-left">
+                     <a href="invoices/invoice.php?id=<?php echo $id?>"  class="btn btn-info btn-large pull-right" target="_blank" ><i class="icon icon-print"></i> Print Invoice</a> 
+                </div>
                 <div class="pull-right">
                   <h4><span>Amount Due:</span><?php echo $total ?></h4>
                   <br>
@@ -129,8 +132,13 @@ $status=$inv['status'];
               <h4 class="alert-heading">Paid Invoice!</h4>
               Invoice is already Paid</div>
                   <?php }?>
+
+                
                      </div>
+
                    </div>
+                   <br>
+              
               </div>
             </div>
 

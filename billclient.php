@@ -59,7 +59,7 @@ $result=mysql_query("SELECT id,name from patients");
                       <td>Issue Date:</td>
                       <td><strong><input type="date" name="dateadded" value="<?php echo date('Y-m-d')?>"></strong></td>
                     </tr>
-                    <td class="width30">Patient:</td>
+                    <td class="width30">Client:</td>
                     <td class="width70">
                       <select name="patientid">
                         <?php while($patient=mysql_fetch_array($result)) {?>
