@@ -21,7 +21,7 @@ $invoice = new Konekt\PdfInvoice\InvoicePrinter();
 
   /* Header Settings */
   $invoice->setLogo("images/solian-logo.jpg");
-  $invoice->setColor("#007fff");
+  $invoice->setColor("#AA3939");
   $invoice->setType("Sale Invoice");
   $invoice->setReference($inv['invoicenumber']);
   $invoice->setDate($inv['dateadded']);
