@@ -14,7 +14,7 @@ $row=mysql_fetch_array(mysql_query("SELECT * FROM patients where id='$id'"));
             <h5>Edit Client Detaiils</h5>
           </div>
           <div class="widget-content nopadding">
-            <form class="form-horizontal" method="post" action="patientclass.php?action=editpatient" name="basic_validate" id="basic_validate" novalidate="novalidate">
+            <form class="form-horizontal" method="post" action="patientclass.php?action=editpatient&&id=<?php echo $id?>" name="basic_validate" id="basic_validate" novalidate="novalidate">
               <div class="control-group">
                 <label class="control-label">Client Name</label>
                 <div class="controls">

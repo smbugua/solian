@@ -9,7 +9,7 @@ $result=mysql_query($query);
   </div>
   <div class="container-fluid">
     <hr>
-    <div class="row-fluid">
+    <div class="row-fluid"> 
       <div class="span12">
 
 <div class="widget-box">

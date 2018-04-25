@@ -134,9 +134,9 @@ if ($_GET['action']=="aadpatient") {
 	$notes=$_POST['notes'];
 	$dob=$_POST['date'];
 	$id=$_REQUEST['id'];
-	mysql_query("UPDATE patients set name='$name',aadress='$addr',town='$town',email='$email',tel='$tel',idno='$idno',sex='$sex',dob='$dob' where id='$id' ");
+	mysql_query("UPDATE patients set name='$name',address='$addr',town='$town',email='$email',tel='$tel',idno='$idno',sex='$sex',dob='$dob' where id='$id'");
 
-	echo "<script>location.replace('patients.php')</script>";
+///	echo "<script>location.replace('patients.php')</script>";
 }elseif ($_GET['action']=="editproduct") {
 	$id=$_REQUEST['id'];
 	$name=$_REQUEST['name'];
