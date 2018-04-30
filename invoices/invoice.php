@@ -8,6 +8,7 @@ $company_location=$main['main_location'];
 $company_tel=$main['main_tel'];
 $company_address=$main['main_address'];
 $email=$main['email'];
+$website=$main['website'];
 $inv=mysql_fetch_array(mysql_query("SELECT i.invoicenumber as invoicenumber,i.dateadded as dateadded,p.name as name,i.totalcost as invoicetotal ,i.status as status ,p.address as paddress,p.town as ptown ,p.tel as ptel,p.email as pemail  from invoices i inner join patients p on p.id=i.patientid where i.id='$id'"));
 $count=$inv['invoicenumber'];
 $result=mysql_query("SELECT p.productname as productname, it.name as itemtypename ,b.name as brandname , itms.quantity as quantity , itms.unitprice as price ,itms.total as totalcost  from products p inner join itemtype it on it.id=p.itemtypeid inner join brand b on b.id=p.brandid inner join invoiceitems itms on itms.productid=p.id inner join invoices i on i.id=itms.invoiceid where i.id='$id'");
@@ -27,7 +28,7 @@ $invoice = new Konekt\PdfInvoice\InvoicePrinter();
   $invoice->setDate($inv['dateadded']);
   //$invoice->setTime(date('h:i:s A',time()));
   $invoice->setDue(date('M dS ,Y',strtotime('+3 months')));
-  $invoice->setFrom(array("Seller Name",$company_name,$company_location,$company_address,$company_tel));
+  $invoice->setFrom(array("Seller Name",$company_name,$company_location,$company_address,$company_tel."\n".$website));
   $invoice->setTo(array("Purchaser Name",$inv['name'],$inv['paddress'],$inv['ptel'],$inv['pemail']));
   /* Adding Items in table */
   while ($row=mysql_fetch_array($result)) {
@@ -35,8 +36,8 @@ $invoice = new Konekt\PdfInvoice\InvoicePrinter();
   $invoice->addItem($row['productname'],$row['itemtypename'],$row['quantity'],$producttax,$row['price'],0,$row['totalcost']); 
   }
   /* Add totals */
-  $invoice->addTotal("Total",$subtotal);
-  $invoice->addTotal("VAT 16%",$tax);
+  $invoice->addTotal("Total",$total);
+  //$invoice->addTotal("VAT 16%",$tax);
   $invoice->addTotal("Total due",$total,true);
   /* Set badge */ 
   if ($status=="0") {
@@ -55,9 +56,9 @@ $invoice = new Konekt\PdfInvoice\InvoicePrinter();
   /* Add title */
   $invoice->addTitle("Freedom To Live");
   /* Add Paragraph */
-  $invoice->addParagraph("Real Estate | Investments | Asset Management | Project Development");
+  $invoice->addParagraph("Real Estate | Investments | Asset Management | Private Equity | Project Development");
   /* Set footer note */
-  $invoice->setFooternote("SOLIAN INVESTMENTS LTD");
+  $invoice->setFooternote("SOLIAN LIMITED");
   /* Render */
   $invoice->render('Invoice'.$no.'.pdf','I'); /* I => Display on browser, D => Force Download, F => local path save, S => return document path */
 ?>
