@@ -28,7 +28,7 @@ $recipts=mysql_query("SELECT p.name as name ,r.amountpaid as cost ,r.dateadded a
             	<?php while($items=mysql_fetch_array($paymentsquery)){?>
               <li>
                 <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
-                <div class="article-post"> <span class="user-info"> Patient : <?php echo $items['name']?> . Invoice Amount Raised: <?php echo $items['cost']?></span>
+                <div class="article-post"> <span class="user-info"> Client : <?php echo $items['name']?> . Invoice Amount Raised: <?php echo $items['cost']?></span>
                   <p><a href="#"><?php echo $items['dateadded']?></a> </p>
                 </div>
               </li>
@@ -48,7 +48,7 @@ $recipts=mysql_query("SELECT p.name as name ,r.amountpaid as cost ,r.dateadded a
               <ul>
               	<?php while($it=mysql_fetch_array($recipts)){?>
                 <li class="clearfix">
-                  <div class="txt"> Patient : <?php echo $it['name']?> . Invoice Amount Paid: <?php echo $it['cost']?>  </div>
+                  <div class="txt"> Client : <?php echo $it['name']?> . Invoice Amount Paid: <?php echo $it['cost']?>  </div>
                   <div class="pull-right"> <a class="tip" href="receipts.php" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
                 </li>
              <?php }?>

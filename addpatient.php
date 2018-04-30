@@ -26,6 +26,12 @@ include('header.php');
                 </div>
               </div>
               <div class="control-group">
+                <label class="control-label">KRA PIN</label>
+                <div class="controls">
+                  <input type="text" class="form-control" name="pin" id="pin">
+                </div>
+              </div>
+              <div class="control-group">
                 <label class="control-label">Address</label>
                 <div class="controls">
                   <input type="text" name="addr" class="form-control" required="" >                  

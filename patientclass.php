@@ -11,9 +11,10 @@ if ($_GET['action']=="aadpatient") {
 	$idno=$_POST['idno'];
 	$sex=$_POST['sex'];
 	$notes=$_POST['notes'];
+	$pin=$_POST['pin'];
 	$dob=$_POST['date'];
 	$date=date('Y-m-d');
-	mysql_query("INSERT INTO patients(name,address,town,email,tel,idno,sex,dob,notes,datecreated)VALUES('$name','$addr','$town','$email','$tel','$idno','$sex','$dob','$notes','$date')");
+	mysql_query("INSERT INTO patients(name,address,town,email,tel,idno,sex,dob,notes,pin,datecreated)VALUES('$name','$addr','$town','$email','$tel','$idno','$sex','$dob','$notes','$pin','$date')");
 	echo "<script>location.replace('patients.php')</script>";
 }elseif ($_GET['action']=="addcondition") {
 	$name=$_POST['name'];
