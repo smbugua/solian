@@ -80,7 +80,7 @@ $total=$inv['invoicetotal'];
                    <a href="#myAlert" data-toggle="modal" class="btn btn-success pull-right"><i class="icon icon-plus"></i> Add Item</a> 
                     
                     <tr>
-                      <th class="head0">Porduct</th>
+                      <th class="head0">Product</th>
                       <th class="head1">Product Type</th>
                       <th class="head0 right">Brand</th>
                       <th class="head0 right">Qty</th>
