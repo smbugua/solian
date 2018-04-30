@@ -72,5 +72,15 @@ echo "<script>alert('Payment Added!')</script>";
 	mysql_query("UPDATE invoices set status='5' where id='$id'");
 	echo "<script>alert('Invoice Voided!')</script>";
 		echo "<script>location.replace('voidedinvoices.php')</script>";
+}elseif ($_GET['action']=="allocateplot") {
+	$clientid=$_REQUEST['clientid'];
+	$projectid=$_POST['project'];
+	$plotno=$_POST['plotno'];
+	$price=$_POST['price'];
+	$dateadded=$_POST['datea'];
+	mysql_query("INSERT INTO plots(customerid,projectid,plotno,price,dateallocated)values('$clientid','$projectid','$plotno','$price','$dateadded')");
+	
+		echo "<script>location.replace('allocate.php?id=$clientid')</script>";	
+
 }
 ?>

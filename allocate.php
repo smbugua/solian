@@ -9,7 +9,7 @@ $company_address=$main['main_address'];
 $email=$main['email'];
 $inv=mysql_fetch_array(mysql_query("SELECT * from patients  where id='$id'"));
 
-$result=mysql_query("SELECT p.productname as productname, it.name as itemtypename ,b.name as brandname , itms.quantity as quantity , itms.unitprice as price ,itms.total as totalcost  from products p inner join itemtype it on it.id=p.itemtypeid inner join brand b on b.id=p.brandid inner join invoiceitems itms on itms.productid=p.id inner join invoices i on i.id=itms.invoiceid where i.id='$id'");
+$result=mysql_query("SELECT it.name as project,p.plotno as plotno , p.price as plotprice ,p.dateallocated as dateallocated from plots p inner join itemtype it on it.id=p.projectid inner join patients pp on pp.id=p.customerid where p.customerid='$id' ");
 
 
 
@@ -17,7 +17,7 @@ $result=mysql_query("SELECT p.productname as productname, it.name as itemtypenam
 
 <div id="content-header">
     <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Billing</a> <a href="#" class="current">invoice</a> </div>
-    <h1>Invoice</h1>
+    <h1>Plot Allocation</h1>
   </div>
   <div class="container-fluid"><hr>
     <div class="row-fluid">
@@ -77,15 +77,13 @@ $result=mysql_query("SELECT p.productname as productname, it.name as itemtypenam
               <div class="span12">
                 <table class="table table-bordered table-invoice-full">
                   <thead>
-                   <a href="#myAlert" data-toggle="modal" class="btn btn-success pull-right"><i class="icon icon-plus"></i> Add Item</a> 
+                   <a href="#myAlert" data-toggle="modal" class="btn btn-success pull-right"><i class="icon icon-plus"></i> Allocate PLot</a> 
                     
                     <tr>
-                      <th class="head0">Porduct</th>
-                      <th class="head1">Product Type</th>
-                      <th class="head0 right">Brand</th>
-                      <th class="head0 right">Qty</th>
-                      <th class="head1 right">Price</th>
-                      <th class="head0 right">Amount</th>
+                      <th class="head0">Project</th>
+                      <th class="head1">Plot No</th>
+                      <th class="head1">Price</th>
+                      <th class="head2">Date Allocated</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -95,8 +93,6 @@ $result=mysql_query("SELECT p.productname as productname, it.name as itemtypenam
                       <th class="right"><?php echo $row[1]?></th>
                       <th class="right"><?php echo $row[2]?></th>
                       <th class="right"><?php echo $row[3]?></th>
-                      <th class="right"><?php echo $row[4]?></th>
-                      <th class="right"><?php echo $row[5]?></th>
                     </tr>
                     <?php }?>
                     
@@ -105,7 +101,7 @@ $result=mysql_query("SELECT p.productname as productname, it.name as itemtypenam
                 <div class="pull-right">
                   <h4><span></h4>
                   <br>
-                  <a class="btn btn-primary btn-large pull-right" href="unpaidinvoices.php"></a> </div></div>
+                  <a class="btn btn-primary btn-large pull-right" href="allocations.php">Plot Allocations </a></div></div>
               </div>
             </div>
 
@@ -130,11 +126,11 @@ $result=mysql_query("SELECT p.productname as productname, it.name as itemtypenam
               </div>
 
               <div class="modal-body">
-                <form method="post" action="actionclass.php?action=addplot&&clientid=<?php echo $id?>">
+                <form method="post" action="actionclass.php?action=allocateplot&&clientid=<?php echo $id?>">
                    <div class="control-group">
                   <label class="control-label">Project</label>
                   <div class="controls">
-                    <select name="product" class="form-control">
+                    <select name="project" class="form-control">
                     <?php
                     $productresult=mysql_query("SELECT id,productname from products");
                     while($productrow=mysql_fetch_array($productresult)){
@@ -144,9 +140,11 @@ $result=mysql_query("SELECT p.productname as productname, it.name as itemtypenam
                     </select>
 
                   <label class="control-label">PLot No</label>
-                    <input type="text" name="quantity" class="form-control">
+                    <input type="text" name="plotno" class="form-control">
                   <label class="control-label">Price</label>
                     <input type="text" name="price" class="form-control">
+                  <label class="control-label">Date Allocated</label>
+                    <input type="date" name="datea" value="<?php echo date('Y-m-d')?>" class="form-control">
                    </div>
                 </div>
                 </div>
