@@ -10,7 +10,7 @@ $email=$main['email'];
 $inv=mysql_fetch_array(mysql_query("SELECT count(id) as ids from invoices"));
 $count=$inv['ids'];
 $count2=$count+1;
-$result=mysql_query("SELECT id,name from patients");
+$result=mysql_query("SELECT id,name from patients where id ='$id'");
 ?>
 <div id="content-header">
     <div id="breadcrumb"> <a href="#" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a> <a href="#">Billing</a> <a href="#" class="current">invoice</a> </div>

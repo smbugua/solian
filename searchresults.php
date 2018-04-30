@@ -43,7 +43,7 @@ $exams=mysql_query("SELECT * FROM patients where  name like '%$name%'");
                   <td><?php echo $row['name']?></td>
                   <td><?php echo $row['tel']?></td>
                   <td><?php echo $row['email']?></td>
-                  <td><a href="billclient.php?id=<?php echo $row['id']?>" class="btn btn-info btn-mini"><i class="icon icon-save"></i> Allocate Plot</a> </td>
+                  <td><a href="allocate.php?id=<?php echo $row['id']?>" class="btn btn-info btn-mini"><i class="icon icon-save"></i> Allocate Plot</a> </td>
                   <td><a href="billclient.php?id=<?php echo $row['id']?>" class="btn btn-danger btn-mini"><i class="icon icon-money"></i> Bill</a> </td>
                 </tr>
                 <?php }?>
