@@ -7,11 +7,11 @@ $company_location=$main['main_location'];
 $company_tel=$main['main_tel'];
 $company_address=$main['main_address'];
 $email=$main['email'];
-$inv=mysql_fetch_array(mysql_query("SELECT i.invoicenumber as invoicenumber,i.dateadded as dateadded,p.name as name,i.totalcost as invoicetotal from invoices i inner join patients p on p.id=i.patientid where i.id='$id'"));
-$count=$inv['invoicenumber'];
+$inv=mysql_fetch_array(mysql_query("SELECT * from patients  where id='$id'"));
+
 $result=mysql_query("SELECT p.productname as productname, it.name as itemtypename ,b.name as brandname , itms.quantity as quantity , itms.unitprice as price ,itms.total as totalcost  from products p inner join itemtype it on it.id=p.itemtypeid inner join brand b on b.id=p.brandid inner join invoiceitems itms on itms.productid=p.id inner join invoices i on i.id=itms.invoiceid where i.id='$id'");
 
-$total=$inv['invoicetotal'];
+
 
 ?>
 
@@ -55,16 +55,16 @@ $total=$inv['invoicetotal'];
                     <tr>
                     <tr>
                       <form action="actionclass.php?action=addinvoiceitems" method="post">
-                      <td class="width30">Invoice ID:</td>
-                      <td class="width70"><strong><input type="text" name="invoiceno" value="<?php echo $count ?>" readonly=""></strong></td>
+                      <td class="width30">Name</td>
+                      <td class="width70"><strong><input type="text" name="invoiceno" value="<?php echo $inv['name']?>" readonly=""></strong></td>
                     </tr>
                     <tr>
-                      <td>Issue Date:</td>
-                      <td><strong><input type="date" name="dateadded" value="<?php echo $inv['dateadded']?>" readonly=""></strong></td>
+                      <td>Address</td>
+                      <td><strong><input type="text" name="dateadded" value="<?php echo $inv['address']?>" readonly=""></strong></td>
                     </tr>
-                    <td class="width30">Client:</td>
+                    <td class="width30">Town:</td>
                     <td class="width70">
-                     <input type="text" name="name" value="<?php echo $inv['name']?>" readonly="">
+                     <input type="text" name="name" value="<?php echo $inv['town']?>" readonly="">
 
                     </td>
                   </tr>
@@ -103,9 +103,9 @@ $total=$inv['invoicetotal'];
                   </tbody>
                 </table>
                 <div class="pull-right">
-                  <h4><span>Amount Due:</span><?php echo $total ?></h4>
+                  <h4><span></h4>
                   <br>
-                  <a class="btn btn-primary btn-large pull-right" href="unpaidinvoices.php">Submit Invoice</a> </div></div>
+                  <a class="btn btn-primary btn-large pull-right" href="unpaidinvoices.php"></a> </div></div>
               </div>
             </div>
 
@@ -126,13 +126,13 @@ $total=$inv['invoicetotal'];
         <div id="myAlert" class="modal hide">
               <div class="modal-header">
                 <button data-dismiss="modal" class="close" type="button">×</button>
-                <h3>Add Billing Item</h3>
+                <h3>Allocate Plot </h3>
               </div>
 
               <div class="modal-body">
-                <form method="post" action="actionclass.php?action=addinvoiceitem&&invoiceid=<?php echo $id?>">
+                <form method="post" action="actionclass.php?action=addplot&&clientid=<?php echo $id?>">
                    <div class="control-group">
-                  <label class="control-label">Product</label>
+                  <label class="control-label">Project</label>
                   <div class="controls">
                     <select name="product" class="form-control">
                     <?php
@@ -143,7 +143,7 @@ $total=$inv['invoicetotal'];
                     <?php }?> 
                     </select>
 
-                  <label class="control-label">Quantity</label>
+                  <label class="control-label">PLot No</label>
                     <input type="text" name="quantity" class="form-control">
                   <label class="control-label">Price</label>
                     <input type="text" name="price" class="form-control">
