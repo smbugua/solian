@@ -96,6 +96,7 @@ echo <<<HeaderFunction
         <li><a href="patients.php">Customer Lists</a></li>
         <li><a href="addpatient.php">Add Customer</a></li>
         <li><a href="searchpatient.php">Search Customer</a></li>
+        <li><a href="allocations.php">Plot Allocations</a></li>
       </ul>
     </li>
     <li class="submenu"> <a href="#"><i class="icon icon-glass"></i> <span>Reception</span> <span class="label label-important"></span></a>
