@@ -1,8 +1,7 @@
 <?php
 include('header.php');
-$idno=$_POST['idno'];
-$phone=$_POST['tel'];
-$exams=mysql_query("SELECT * FROM patients where idno='$idno' or tel='$phone'");
+$name=$_POST['name'];
+$exams=mysql_query("SELECT * FROM patients where  name like '%$name%'");
 ?>
 
  <div id="content-header">

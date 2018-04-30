@@ -18,21 +18,13 @@ $result=mysql_query($query);
             <form id="form-wizard" action="searchresults.php" class="form-horizontal" method="post">
               <div id="form-wizard-1" class="step">
                 <div class="control-group">
-                  <label class="control-label">Phone Number</label>
+                  <label class="control-label">Name</label>
                   <div class="controls">
-                    <input id="username" type="text" name="tel" />
+                    <input id="username" type="text" name="name" />
                   </div>
                 </div>
-                  <div class="control-group">
-                  <label class="control-label">Or</label>
                   
-                </div>
-                <div class="control-group">
-                  <label class="control-label">Id No</label>
-                  <div class="controls">
-                    <input id="text" type="text" name="idno" />
-                  </div>
-                </div>
+                
               
               </div>
           
