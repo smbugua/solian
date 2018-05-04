@@ -28,6 +28,7 @@ $result=mysql_query($query);
                   <th>National ID</th>
                   <th>DOB</th>
                   <th>Dateadded</th>
+                  <th>Details</th>
                   <th>Edit</th>
                   <th>Delete</th>
                 </tr>
@@ -48,6 +49,7 @@ $result=mysql_query($query);
                   <td><?php echo $row['idno']?></td>
                   <td><?php echo $row['dob']?></td>
                   <td><?php echo $row['datecreated']?></td>                  
+                  <td><a href="customerdash.php?id=<?php echo $row['id']?>" class="btn btn-success btn-mini"><i class="icon icon-file"></i> Details</a> </td>
                   <td><a href="editpatient.php?id=<?php echo $row['id']?>" class="btn btn-primary btn-mini"><i class="icon icon-edit"></i> Edit</a> </td>
                   <td><a href="patientclass.php?action=delete_patient&&id=<?php echo $row['id']?>" class="btn btn-danger btn-mini"><i class="icon icon-trash"></i> Delete</a> </td>
                 </tr>
