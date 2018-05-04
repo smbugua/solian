@@ -232,104 +232,12 @@ $query3=mysql_query("SELECT it.name as project,p.plotno as plotno , p.price as p
           </div>
         </div>
         <div class="widget-box">
-          <div class="widget-title"><span class="icon"><i class="icon-user"></i></span>
-            <h5>Our Partner (Box with Fix height)</h5>
-          </div>
-          <div class="widget-content nopadding fix_hgt">
-            <ul class="recent-posts">
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
-                <div class="article-post"> <span class="user-info">John Deo</span>
-                  <p>Web Desginer &amp; creative Front end developer</p>
-                </div>
-              </li>
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
-                <div class="article-post"> <span class="user-info">John Deo</span>
-                  <p>Web Desginer &amp; creative Front end developer</p>
-                </div>
-              </li>
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av4.jpg"> </div>
-                <div class="article-post"> <span class="user-info">John Deo</span>
-                  <p>Web Desginer &amp; creative Front end developer</p>
-                </div>
-            </ul>
-          </div>
+          
         </div>
         <div class="accordion" id="collapse-group">
           <div class="accordion-group widget-box">
             <div class="accordion-heading">
-              <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGOne" data-toggle="collapse"> <span class="icon"><i class="icon-magnet"></i></span>
-                <h5>Accordion Example 1</h5>
-                </a> </div>
-            </div>
-            <div class="collapse in accordion-body" id="collapseGOne">
-              <div class="widget-content"> It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </div>
-            </div>
-          </div>
-          <div class="accordion-group widget-box">
-            <div class="accordion-heading">
-              <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGTwo" data-toggle="collapse"> <span class="icon"><i class="icon-magnet"></i></span>
-                <h5>Accordion Example 2</h5>
-                </a> </div>
-            </div>
-            <div class="collapse accordion-body" id="collapseGTwo">
-              <div class="widget-content">And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.</div>
-            </div>
-          </div>
-          <div class="accordion-group widget-box">
-            <div class="accordion-heading">
-              <div class="widget-title"> <a data-parent="#collapse-group" href="#collapseGThree" data-toggle="collapse"> <span class="icon"><i class="icon-magnet"></i></span>
-                <h5>Accordion Example 3</h5>
-                </a> </div>
-            </div>
-            <div class="collapse accordion-body" id="collapseGThree">
-              <div class="widget-content"> Waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just </div>
-            </div>
-          </div>
-        </div>
-        <div class="widget-box collapsible">
-          <div class="widget-title"> <a data-toggle="collapse" href="#collapseOne"> <span class="icon"><i class="icon-arrow-right"></i></span>
-            <h5>Toggle, Open by default, </h5>
-            </a> </div>
-          <div id="collapseOne" class="collapse in">
-            <div class="widget-content"> This box is opened by default, paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end. </div>
-          </div>
-          <div class="widget-title"> <a data-toggle="collapse" href="#collapseTwo"> <span class="icon"><i class="icon-remove"></i></span>
-            <h5>Toggle, closed by default</h5>
-            </a> </div>
-          <div id="collapseTwo" class="collapse">
-            <div class="widget-content"> This box is now open </div>
-          </div>
-          <div class="widget-title"> <a data-toggle="collapse" href="#collapseThree"> <span class="icon"><i class="icon-remove"></i></span>
-            <h5>Toggle, closed by default</h5>
-            </a> </div>
-          <div id="collapseThree" class="collapse">
-            <div class="widget-content"> This box is now open </div>
-          </div>
-        </div>
-        <div class="widget-box">
-          <div class="widget-title">
-            <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#tab1">Tab1</a></li>
-              <li><a data-toggle="tab" href="#tab2">Tab2</a></li>
-              <li><a data-toggle="tab" href="#tab3">Tab3</a></li>
-            </ul>
-          </div>
-          <div class="widget-content tab-content">
-            <div id="tab1" class="tab-pane active">
-              <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment.</p>
-              <img src="img/demo/demo-image1.jpg" alt="demo-image"/></div>
-            <div id="tab2" class="tab-pane"> <img src="img/demo/demo-image2.jpg" alt="demo-image"/>
-              <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment.</p>
-            </div>
-            <div id="tab3" class="tab-pane">
-              <p>And is full of waffle to It has multiple paragraphs and is full of waffle to pad out the comment. Usually, you just wish these sorts of comments would come to an end.multiple paragraphs and is full of waffle to pad out the comment. </p>
-              <img src="img/demo/demo-image3.jpg" alt="demo-image"/></div>
-          </div>
-        </div>
-      </div>
+     </div>
     </div>
   </div>
 </div>
