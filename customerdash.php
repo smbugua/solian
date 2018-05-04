@@ -6,7 +6,7 @@ $invoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices 
 $paidinvoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices where patientid='$id' and status='1'"));
 $upinvoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices where patientid='$id' and status='2'"));
 $voidedinvoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices where patientid='$id' and status='5'"));
-$query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amountpaid as amountpaid,r.balance as balance , pm.mode as mode,r.dateadded as dateadded from receipts r inner join invoices inv on inv.id=r.invoiceid inner join patients p on p.id=inv.patientid inner join paymentmodes pm on pm.id=r.paymentmethod  where p.id='$id' order by r.datemodified DESC ");
+$query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amountpaid as amountpaid,r.balance as balance , pm.mode as mode,r.dateadded as dateadded, inv.invoicenumber as invno from receipts r inner join invoices inv on inv.id=r.invoiceid inner join patients p on p.id=inv.patientid inner join paymentmodes pm on pm.id=r.paymentmethod  where p.id='$id' order by r.datemodified DESC limit 5 ");
 
 ?>
 
@@ -48,15 +48,15 @@ $query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amou
                   <td>Receipt</td>
                 </thead>
                 <tbody>
-                 <?php while ($rs=mysql_fetch_array($query)){?>
+                 <?php while ($r=mysql_fetch_array($query)){?>
                  <tr>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
-                   <td></td>
+                   <td><?php echo $r['invno']?></td>
+                   <td><?php echo $r['tot']?></td>
+                   <td><?php echo $r['amountpaid']?></td>
+                   <td><?php echo $r['balance']?></td>
+                   <td><?php echo $r['mode']?></td>
+                   <td><?php echo $r['dateadded']?></td>
+                   <td><a href="viewreceipt.php?id=<?php echo $r['id']?>" class="btn btn-success btn-mini" ><i class="fa fa-print"> </i> Print</a> </td>
                  </tr>
                  <?php }?> 
                 </tbody>
@@ -328,10 +328,9 @@ $query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amou
 
 <!--Footer-part-->
 
-<div class="row-fluid">
-  <div id="footer" class="span12"> 2013 &copy; Matrix Admin. Brought to you by <a href="http://themedesigner.in">Themedesigner.in</a> </div>
-</div>
+<?php include('footer.php') ?>
 
+<script src="js/jquery.dataTables.min.js"></script> 
 
 
 </script>
