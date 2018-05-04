@@ -3,11 +3,19 @@ $id=$_GET['id'];
 include('header.php');
 $c=mysql_fetch_array(mysql_query("SELECT p.name as clientname,p.tel as clienttel,p.pin as krapin ,p.idno as idno, p.email as clientemail from patients p  where p.id='$id' "));
 $invoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices where patientid='$id' "));
-$paidinvoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices where patientid='$id' and status='1'"));
-$upinvoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices where patientid='$id' and status='2'"));
+$paidinvoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices where patientid='$id' and status='2'"));
+$partpaidinvoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices where patientid='$id' and status='1'"));
+$upinvoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices where patientid='$id' and status='0'"));
 $voidedinvoicecount=mysql_fetch_array(mysql_query("SELECT COUNT(*) as c from invoices where patientid='$id' and status='5'"));
-$query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amountpaid as amountpaid,r.balance as balance , pm.mode as mode,r.dateadded as dateadded, inv.invoicenumber as invno from receipts r inner join invoices inv on inv.id=r.invoiceid inner join patients p on p.id=inv.patientid inner join paymentmodes pm on pm.id=r.paymentmethod  where p.id='$id' order by r.datemodified DESC limit 5 ");
+$query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amountpaid as amountpaid,r.balance as balance , pm.mode as mode,r.dateadded as dateadded, inv.invoicenumber as invno from receipts r inner join invoices inv on inv.id=r.invoiceid inner join patients p on p.id=inv.patientid inner join paymentmodes pm on pm.id=r.paymentmethod  where p.id='$id' order by r.datemodified DESC limit 10 ");
 
+$amounts=mysql_fetch_array(mysql_query("SELECT SUM(r.amountpaid) as paid ,SUM(r.amountdue) as dues ,sum(r.balance) as balances   from receipts r  inner join  invoices inv on inv.id=r.invoiceid where  inv.patientid='$id' "));
+
+
+$query2=mysql_query("SELECT * FROM invoices where patientid='$id' order by id desc limit 10");
+
+
+$query3=mysql_query("SELECT it.name as project,p.plotno as plotno , p.price as plotprice ,p.dateallocated as dateallocated , pp.name as clientname from plots p inner join itemtype it on it.id=p.projectid inner join patients pp on pp.id=p.customerid  ");
 ?>
 
 
@@ -20,8 +28,9 @@ $query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amou
         <li class="bg_lb"> <a href="#"> <i class="icon-user"></i> <span class="label label-important"></span><?php echo $c['clientname']?></a> </li>
         <li class="bg_lg"> <a href="#"> <i class="icon-signal"></i> <?php echo $c['clienttel']?></a> </li>       
          <li class="bg_ls"> <a href="#"> <i class="icon-money"></i><span class="label label-success"></span>Total Invoices Raised <?php echo $invoicecount['c']?>  </a> </li>
-        <li class="bg_lg"> <a href="#"> <i class="icon-money"></i> Paid Invoices <?php echo $paidinvoicecount['c']?>  </a> </li>
-        <li class="bg_lo"> <a href="#"> <i class="icon-money"></i> unPaid Invoices <?php echo $upinvoicecount['c']?>  </a> </li>
+        <li class="bg_lg"> <a href="#"> <i class="icon-money"></i> Fully Paid Invoices <?php echo $paidinvoicecount['c']?>  </a> </li>
+        <li class="bg_lb"> <a href="#"> <i class="icon-money"></i> Part Paid Invoices <?php echo $partpaidinvoicecount['c']?>  </a> </li>
+        <li class="bg_lo"> <a href="#"> <i class="icon-money"></i> UnPaid Invoices <?php echo $upinvoicecount['c']?>  </a> </li>
         <li class="bg_ly"> <a href="#"> <i class="icon-money"></i> Voided Invoices <?php echo $voidedinvoicecount['c']?>  </a> </li>
 
       </ul>
@@ -32,7 +41,7 @@ $query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amou
     <div class="row-fluid">
       <div class="widget-box">
         <div class="widget-title bg_lg"><span class="icon"><i class="icon-signal"></i></span>
-          <h5>Payments</h5>
+          <h5>Payments Made</h5>
         </div>
         <div class="widget-content" >
           <div class="row-fluid">
@@ -67,12 +76,12 @@ $query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amou
           
             <div class="span3">
               <ul class="site-stats">
-                <li class="bg_lh"><i class="icon-user"></i> <strong>2540</strong> <small>Total Users</small></li>
-                <li class="bg_lh"><i class="icon-plus"></i> <strong>120</strong> <small>New Users </small></li>
-                <li class="bg_lh"><i class="icon-shopping-cart"></i> <strong>656</strong> <small>Total Shop</small></li>
-                <li class="bg_lh"><i class="icon-tag"></i> <strong>9540</strong> <small>Total Orders</small></li>
-                <li class="bg_lh"><i class="icon-repeat"></i> <strong>10</strong> <small>Pending Orders</small></li>
-                <li class="bg_lh"><i class="icon-globe"></i> <strong>8540</strong> <small>Online Orders</small></li>
+                <li class="bg_lb"><a href="billclient.php?id=<?php echo $id?>"> <i class="icon-credit-card"></i> <strong></strong> <small>Bill Client</small></a></li>
+                <li class="bg_lb"><a href="allocate.php?id=<?php echo $id?>"><i class="icon-plus"></i> <strong></strong> <small>New Allocation </small></a> </li>
+                <li class="bg_lg"><i class="icon-shopping-cart"></i> <strong><?php echo $amounts['paid']?></strong> <small>Total Paid In</small></li>
+                <li class="bg_lo"><i class="icon-repeat"></i> <strong><?php echo $amounts['balances']?> </strong> <small>Total Balances</small></li>
+                <li class="bg_ls"><i class="icon-money"></i> <strong><?php echo $amounts['dues']?> </strong> <small>Total Orders</small></li>
+                <li class="bg_ly"><a href="editpatient.php?id=<?php echo $id?>"> <i class="icon-user"></i> <strong> 1</strong> <small>Edit Client</small></a></li>
               </ul>
             </div>
           </div>
@@ -85,106 +94,96 @@ $query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amou
       <div class="span6">
         <div class="widget-box">
           <div class="widget-title bg_ly" data-toggle="collapse" href="#collapseG2"><span class="icon"><i class="icon-chevron-down"></i></span>
-            <h5>Latest Posts</h5>
+            <h5>Latest Invoices</h5>
           </div>
           <div class="widget-content nopadding collapse in" id="collapseG2">
-            <ul class="recent-posts">
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av1.jpg"> </div>
-                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                  <p><a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the comment.</a> </p>
-                </div>
-              </li>
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av2.jpg"> </div>
-                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                  <p><a href="#">This is a much longer one that will go on for a few lines.It has multiple paragraphs and is full of waffle to pad out the comment.</a> </p>
-                </div>
-              </li>
-              <li>
-                <div class="user-thumb"> <img width="40" height="40" alt="User" src="img/demo/av4.jpg"> </div>
-                <div class="article-post"> <span class="user-info"> By: john Deo / Date: 2 Aug 2012 / Time:09:27 AM </span>
-                  <p><a href="#">This is a much longer one that will go on for a few lines.Itaffle to pad out the comment.</a> </p>
-                </div>
-              <li>
-                <button class="btn btn-warning btn-mini">View All</button>
-              </li>
-            </ul>
+              <table class="table table-bordered data-table">
+                <thead>
+                  <th>Invoice Number</th>
+                  <th>Amount Due</th>
+                  <th>Status</th>
+                  <th>Date Added</th>
+                </thead>
+                <tbody>
+                  <?php while($inv=mysql_fetch_array($query2)){
+                    $status=$inv['status'];
+                    ?>
+                  <tr>
+                    <td><?php echo $inv['invoicenumber']?></td>
+                    <td><?php echo $inv['totalcost']?></td>
+                    <?php if($status=0){
+
+                      echo "<td>Unpaid</td>";
+                    }elseif ($status=1) {
+                      echo "<td>Partially Paid</td>";
+                    }elseif ($status=2) {
+                      echo "<td>Fully Paid</td>";
+                    }elseif ($status=5) {
+                      echo "<td>Voided Invoice</td>";
+                    }
+                      ?>
+                    <td><?php echo $inv['dateadded']?></td>
+                  </tr>
+                  <?php }?>
+                  
+                </tbody>
+                
+              </table>
+
+
+
+                
+            
           </div>
+          <a href="clientinvoices.php?id=<?php echo $id?>" class="btn btn-primary">View All</a>
         </div>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
-            <h5>To Do list</h5>
+            <h5>Plot Allocations</h5>
           </div>
           <div class="widget-content">
             <div class="todo">
-              <ul>
-                <li class="clearfix">
-                  <div class="txt"> Luanch This theme on Themeforest <span class="by label">Alex</span></div>
-                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                </li>
-                <li class="clearfix">
-                  <div class="txt"> Manage Pending Orders <span class="date badge badge-warning">Today</span> </div>
-                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                </li>
-                <li class="clearfix">
-                  <div class="txt"> MAke your desk clean <span class="by label">Admin</span></div>
-                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                </li>
-                <li class="clearfix">
-                  <div class="txt"> Today we celebrate the theme <span class="date badge badge-info">08.03.2013</span> </div>
-                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                </li>
-                <li class="clearfix">
-                  <div class="txt"> Manage all the orders <span class="date badge badge-important">12.03.2013</span> </div>
-                  <div class="pull-right"> <a class="tip" href="#" title="Edit Task"><i class="icon-pencil"></i></a> <a class="tip" href="#" title="Delete"><i class="icon-remove"></i></a> </div>
-                </li>
-              </ul>
+              <table class="table table-bordered data-table">
+                <thead>
+                  <th>Project Details</th>
+                  <th>Plot Number</th>
+                  <th>Price</th>
+                  <th>Date Added</th>
+                </thead>
+                <tbody>
+                  <?php while($inv2=mysql_fetch_array($query3)){
+                    ?>
+                  <tr>
+                    <td><?php echo $inv2['project']?></td>
+                    <td><?php echo $inv2['plotno']?></td>
+                    <td><?php echo $inv2['plotprice']?></td>
+                   <td><?php echo $inv2['dateallocated']?></td>
+                  </tr>
+                  <?php }?>
+                  
+                </tbody>
+                
+              </table>
+
             </div>
           </div>
         </div>
         <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
-            <h5>Progress Box</h5>
+            <h5></h5>
           </div>
           <div class="widget-content">
             <ul class="unstyled">
-              <li> <span class="icon24 icomoon-icon-arrow-up-2 green"></span> 81% Clicks <span class="pull-right strong">567</span>
-                <div class="progress progress-striped ">
-                  <div style="width: 81%;" class="bar"></div>
-                </div>
-              </li>
-              <li> <span class="icon24 icomoon-icon-arrow-up-2 green"></span> 72% Uniquie Clicks <span class="pull-right strong">507</span>
-                <div class="progress progress-success progress-striped ">
-                  <div style="width: 72%;" class="bar"></div>
-                </div>
-              </li>
-              <li> <span class="icon24 icomoon-icon-arrow-down-2 red"></span> 53% Impressions <span class="pull-right strong">457</span>
-                <div class="progress progress-warning progress-striped ">
-                  <div style="width: 53%;" class="bar"></div>
-                </div>
-              </li>
-              <li> <span class="icon24 icomoon-icon-arrow-up-2 green"></span> 3% Online Users <span class="pull-right strong">8</span>
-                <div class="progress progress-danger progress-striped ">
-                  <div style="width: 3%;" class="bar"></div>
-                </div>
-              </li>
+           
             </ul>
           </div>
         </div>
         <div class="widget-box">
           <div class="widget-title bg_lo"  data-toggle="collapse" href="#collapseG3" > <span class="icon"> <i class="icon-chevron-down"></i> </span>
-            <h5>News updates</h5>
+            
           </div>
           <div class="widget-content nopadding updates collapse in" id="collapseG3">
-            <div class="new-update clearfix"><i class="icon-ok-sign"></i>
-              <div class="update-done"><a title="" href="#"><strong>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</strong></a> <span>dolor sit amet, consectetur adipiscing eli</span> </div>
-              <div class="update-date"><span class="update-day">20</span>jan</div>
-            </div>
-            <div class="new-update clearfix"> <i class="icon-gift"></i> <span class="update-notice"> <a title="" href="#"><strong>Congratulation Maruti, Happy Birthday </strong></a> <span>many many happy returns of the day</span> </span> <span class="update-date"><span class="update-day">11</span>jan</span> </div>
-            <div class="new-update clearfix"> <i class="icon-move"></i> <span class="update-alert"> <a title="" href="#"><strong>Maruti is a Responsive Admin theme</strong></a> <span>But already everything was solved. It will ...</span> </span> <span class="update-date"><span class="update-day">07</span>Jan</span> </div>
-            <div class="new-update clearfix"> <i class="icon-leaf"></i> <span class="update-done"> <a title="" href="#"><strong>Envato approved Maruti Admin template</strong></a> <span>i am very happy to approved by TF</span> </span> <span class="update-date"><span class="update-day">05</span>jan</span> </div>
-            <div class="new-update clearfix"> <i class="icon-question-sign"></i> <span class="update-notice"> <a title="" href="#"><strong>I am alwayse here if you have any question</strong></a> <span>we glad that you choose our template</span> </span> <span class="update-date"><span class="update-day">01</span>jan</span> </div>
+           
           </div>
         </div>
         
@@ -192,7 +191,7 @@ $query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amou
       <div class="span6">
         <div class="widget-box widget-chat">
           <div class="widget-title bg_lb"> <span class="icon"> <i class="icon-comment"></i> </span>
-            <h5>Chat Option</h5>
+            <h5>Chat & SMS Option</h5>
           </div>
           <div class="widget-content nopadding collapse in" id="collapseG4">
             <div class="chat-users panel-right2">
@@ -201,17 +200,28 @@ $query=mysql_query("SELECT r.id as id, p.name as name,r.amountdue as tot ,r.amou
               </div>
               <div class="panel-content nopadding">
                 <ul class="contact-list">
-                  <li id="user-Alex" class="online"><a href=""><img alt="" src="img/demo/av1.jpg" /> <span>Alex</span></a></li>
-                  <li id="user-Linda"><a href=""><img alt="" src="img/demo/av2.jpg" /> <span>Linda</span></a></li>
-                  <li id="user-John" class="online new"><a href=""><img alt="" src="img/demo/av3.jpg" /> <span>John</span></a><span class="msg-count badge badge-info">3</span></li>
-                  <li id="user-Mark" class="online"><a href=""><img alt="" src="img/demo/av4.jpg" /> <span>Mark</span></a></li>
-                  <li id="user-Maxi" class="online"><a href=""><img alt="" src="img/demo/av5.jpg" /> <span>Maxi</span></a></li>
-                </ul>
+                  <li id="user-Alex" class="online"><a href=""><img alt="" src="img/demo/av1.jpg" /> <span><?php echo $user?></span></a></li>
               </div>
             </div>
             <div class="chat-content panel-left2">
               <div class="chat-messages" id="chat-messages">
-                <div id="chat-messages-inner"></div>
+                <div id="chat-messages-inner">
+                  <table class="table table-bordered data-table">
+                    <thead>
+                      <th>Message</th>
+                      <th>Sent By</th>
+                      <th>Date sent</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>test</td>
+                        <td>test</td>
+                        <td>test</td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                </div>
               </div>
               <div class="chat-message well">
                 <button class="btn btn-success">Send</button>
