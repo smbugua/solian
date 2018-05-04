@@ -204,6 +204,8 @@ $totaldue=$checker['totalcost'];
                     <input type="text" name="bal" id="bal" min="0" class="form-control" readonly="">
                     <label>Refference</label>
                     <input type="text" name="ref" class="form-control" required="true">
+                    <label>Date Paid<span style="color:green"  > (Click on Down Arrow to change)</span> </label>
+                    <input type="date" name="date" class="form-control" value="<?php echo date('Y-m-d')?>" required="true">
                    </div>
                 </div>
               

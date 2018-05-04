@@ -35,7 +35,7 @@ $mode=$_POST['mode'];
 $bal=$_POST['bal'];
 $paid=$_POST['paid'];	
 $user=$_SESSION['user'];
-$date=date('Y-m-d');
+$date=$_POST['date'];
 		// insert to receipts for each mode
 		/*
 		*1-MPesa Paybill
