@@ -204,7 +204,7 @@ $query3=mysql_query("SELECT it.name as project,p.plotno as plotno , p.price as p
                       </tr>
                     </tbody>
                   </table>
-
+                  
                 </div>
               </div>
               <div class="chat-message well">
