@@ -168,24 +168,8 @@ $query3=mysql_query("SELECT it.name as project,p.plotno as plotno , p.price as p
             </div>
           </div>
         </div>
-        <div class="widget-box">
-          <div class="widget-title"> <span class="icon"><i class="icon-ok"></i></span>
-            <h5></h5>
-          </div>
-          <div class="widget-content">
-            <ul class="unstyled">
-           
-            </ul>
-          </div>
-        </div>
-        <div class="widget-box">
-          <div class="widget-title bg_lo"  data-toggle="collapse" href="#collapseG3" > <span class="icon"> <i class="icon-chevron-down"></i> </span>
-            
-          </div>
-          <div class="widget-content nopadding updates collapse in" id="collapseG3">
-           
-          </div>
-        </div>
+    
+       
         
       </div>
       <div class="span6">
