@@ -15,7 +15,7 @@ $amounts=mysql_fetch_array(mysql_query("SELECT SUM(r.amountpaid) as paid ,SUM(r.
 $query2=mysql_query("SELECT * FROM invoices where patientid='$id' and status !='5' order by id desc limit 10");
 
 
-$query3=mysql_query("SELECT it.name as project,p.plotno as plotno , p.price as plotprice ,p.dateallocated as dateallocated , pp.name as clientname from plots p inner join itemtype it on it.id=p.projectid inner join patients pp on pp.id=p.customerid  ");
+$query3=mysql_query("SELECT it.name as project,p.plotno as plotno , p.price as plotprice ,p.dateallocated as dateallocated , pp.name as clientname from plots p inner join itemtype it on it.id=p.projectid inner join patients pp on pp.id=p.customerid  where p.customerid='$id'");
 ?>
 
 
