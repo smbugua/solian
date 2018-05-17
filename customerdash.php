@@ -16,6 +16,7 @@ $query2=mysql_query("SELECT * FROM invoices where patientid='$id' and status !='
 
 
 $query3=mysql_query("SELECT it.name as project,p.plotno as plotno , p.price as plotprice ,p.dateallocated as dateallocated , pp.name as clientname from plots p inner join itemtype it on it.id=p.projectid inner join patients pp on pp.id=p.customerid  where p.customerid='$id'");
+$result3=mysql_query("SELECT * from messages where clientid='$id' order by id desc limit 5" );
 ?>
 
 
@@ -197,21 +198,26 @@ $query3=mysql_query("SELECT it.name as project,p.plotno as plotno , p.price as p
                       <th>Date sent</th>
                     </thead>
                     <tbody>
+                      <?php while($msg=mysql_fetch_array($result3)){?>
                       <tr>
-                        <td>test</td>
-                        <td>test</td>
-                        <td>test</td>
+                        <td><?php echo  $msg['msg']?></td>
+                        <td><?php echo  $msg['sender']?></td>
+                        <td><?php echo  $msg['datemodified']?></td>
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                   
                 </div>
               </div>
               <div class="chat-message well">
+                <form action="chatsms.php?id=<?php echo $id?>" method="post">
                 <button class="btn btn-success">Send</button>
                 <span class="input-box">
                 <input type="text" name="msg-box" id="msg-box" />
                 </span> </div>
+                  
+                </form>
             </div>
           </div>
         </div>

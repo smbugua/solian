@@ -4,8 +4,8 @@ include('header.php');
 require_once('AfricasTalkingGateway.php');
 $id=$_REQUEST['id'];
 // Specify your login credentials
-$username   = "smbugua";
-$apikey     = "74acee8753dd77b4be356cb190c1dd22f6d993f86e2ecb24d092361617d83148";
+$username   = "Newmove";
+$apikey     = "b7632588b2b1717cd825fc2561c1a701c7c8b3e15c626380dc03be9fc0049d89";
 // NOTE: If connecting to the sandbox, please use your sandbox login credentials
 // Specify the numbers that you want to send to in a comma-separated list
 // Please ensure you include the country code (+254 for Kenya in this case)
@@ -18,7 +18,7 @@ $dateadded=$query['datea'];
 $recipients=$phone;
 // And of course we want our recipients to know what we really do
 $message    ="Hello ".$name." your appointment on".$dateadded." has been booked.Solian Investments Thanks you for your Business!.";
-//$from = "GALLERIA";
+$from = "SOLIAN";
 // Create a new instance of our awesome gateway class
 $gateway    = new AfricasTalkingGateway($username, $apikey);
 // NOTE: If connecting to the sandbox, please add the sandbox flag to the constructor:
@@ -31,7 +31,7 @@ $gateway    = new AfricasTalkingGateway($username, $apiKey, "sandbox");
 try 
 { 
   // Thats it, hit send and we'll take care of the rest. 
-  $results = $gateway->sendMessage($recipients, $message);
+  $results = $gateway->sendMessage($recipients, $message,$from);
             
   foreach($results as $result) {
     // status is either "Success" or "error message"
@@ -45,8 +45,6 @@ catch ( AfricasTalkingGatewayException $e )
 {
   echo "Encountered an error while sending: ".$e->getMessage();
 }
-
-
 }
   echo "<script>alert('SMS Sent!')</script>";
  echo "<script>location.replace('appointments.php')</script>";
