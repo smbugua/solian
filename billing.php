@@ -130,7 +130,7 @@ $total=$inv['invoicetotal'];
               </div>
 
               <div class="modal-body">
-                <form method="post" action="actionclass.php?action=addinvoiceitem&&invoiceid=<?php echo $id?>">
+                <form method="post" action="actionclass.php?action=addinvoiceitem&&invoiceid=<?php echo $id?>&&clientid=">
                    <div class="control-group">
                   <label class="control-label">Product</label>
                   <div class="controls">
@@ -150,7 +150,7 @@ $total=$inv['invoicetotal'];
                   <label class="control-label">Plot No</label>
                     <select name="plotno" class="form-control" id="plotno">
                     <?php
-                    $productresult=mysql_query("SELECT p.id as productid,ps.id as id ,ps.plotno as plotno , p.productname as productname from plotstatus ps inner join products p on p.id=ps.projectid where ps.id not in(SELECT plotid from plot_customers ) group by p.id , ps.id asc ");
+                    $productresult=mysql_query("SELECT p.id as productid,ps.id as id ,ps.plotno as plotno , p.productname as productname from plotstatus ps inner join products p on p.id=ps.projectid where ps.id not in(SELECT plotid from plot_customers ) and ps.status='0' group by p.id , ps.id asc ");
                     while($productrow=mysql_fetch_array($productresult)){
                     ?>  
                     <option value="<?php echo $productrow['id']?>"><?php echo $productrow['productname']."  No ".$productrow['plotno']  ?></option>

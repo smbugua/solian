@@ -21,8 +21,17 @@ $invoice=mysql_fetch_array(mysql_query("SELECT i.totalcost as total from invoice
 //new total
 $currentinvoicetotal=$invoice['total'];
 $newtotl=$currentinvoicetotal+$total;
+$date=date('Y-m-d');
+$clientid=getInvoicePatient($id);
 //insert iinvoice items
-mysql_query("INSERT INTO invoiceitems(invoiceid,productid,unitprice,quantity,total,,plotid)VALUES('$id','$productid','$price','$quantity','$total')");
+mysql_query("INSERT INTO invoiceitems(invoiceid,productid,unitprice,quantity,total,plotid)VALUES('$id','$productid','$price','$quantity','$total','$plotid')");
+//set plot as assigned to customer and 
+mysql_query("UPDATE plotstatus set status=1 where id='$plotid'");
+mysql_query("INSERT INTO plot_customers(clientid,plotid,dateadded)values('$clientid','$plotid','$date')");
+//SET NEW STOCK
+$currentstock=getstock($productid);
+$newstock=$currentstock-$quantity;
+updatestock($productid,$newstock);
 //update invoice total
 mysql_query("UPDATE invoices SET totalcost='$newtotl' where id='$id'");
 echo "<script>alert('Product Added!')</script>";

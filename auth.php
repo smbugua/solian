@@ -55,6 +55,20 @@ function processQuery($query)
     return $result;
     
 }
+function getstock($id){
+$stockquery=mysql_fetch_array(mysql_query("SELECT totalstock from productstock where productid='$id' "));
+$stock=$stockquery['totalstock'];
+return $stock;
+}
+function updatestock($id,$newstock){
+mysql_query("UPDATE productstock set totalstock='$newstock' where productid='$id'");
+}
+
+function getInvoicePatient($invoiceid){
+	$invoicequery=mysql_fetch_array(mysql_query("SELECT patientid from invoices where id='$invoiceid' "));
+$p=$invoicequery['patientid'];
+return $p;
+}
 
 function longdate($timestamp)
 {
