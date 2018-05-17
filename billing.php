@@ -103,9 +103,24 @@ $total=$inv['invoicetotal'];
                   </tbody>
                 </table>
                 <div class="pull-right">
-                  <h4><span>Amount Due:</span><?php echo $total ?></h4>
+
+                  <h4><span>Amount Due:</span><?php //echo $total ?></h4>
+                  <input type="number" id="total" readonly="" value="<?php echo $total ?>"> 
                   <br>
-                  <a class="btn btn-primary btn-large pull-right" href="unpaidinvoices.php">Submit Invoice</a> </div></div>
+                  <form action="paymentstructure.php" method="post">
+                   <label>Choose Payment Structure</label>
+                  <select name="struct" class="form-control">
+                    <option value="1">Cash</option>
+                    <option value="2">Installments</option>
+                  </select>
+                  <label>Period</label>
+                  <input type="text" name="period" required="" class="form-control">
+                  <label>Installments</label>
+                  <input type="text" name="installments" disabled=""  class="form-control">
+                  <br>
+                  <button class="btn btn-primary btn-large pull-right" >Submit Invoice</button> 
+                </form>
+                </div></div>
               </div>
             </div>
 
