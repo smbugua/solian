@@ -11,6 +11,7 @@ echo "<script>location.replace('billing.php?id=$last_id')</script>";
 $id=$_REQUEST['invoiceid'];
 $productid=$_POST['product'];
 $quantity=$_POST['quantity'];
+$plotid=$_POST['plotno'];
 $prices=mysql_fetch_array(mysql_query("SELECT sp.price as price from stockprice sp inner join products p on p.id=sp.productid order by sp.dateadded desc limit 1 "));
 //get pricing
 $price=$_POST['price'];
@@ -21,7 +22,7 @@ $invoice=mysql_fetch_array(mysql_query("SELECT i.totalcost as total from invoice
 $currentinvoicetotal=$invoice['total'];
 $newtotl=$currentinvoicetotal+$total;
 //insert iinvoice items
-mysql_query("INSERT INTO invoiceitems(invoiceid,productid,unitprice,quantity,total)VALUES('$id','$productid','$price','$quantity','$total')");
+mysql_query("INSERT INTO invoiceitems(invoiceid,productid,unitprice,quantity,total,,plotid)VALUES('$id','$productid','$price','$quantity','$total')");
 //update invoice total
 mysql_query("UPDATE invoices SET totalcost='$newtotl' where id='$id'");
 echo "<script>alert('Product Added!')</script>";

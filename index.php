@@ -14,6 +14,7 @@ $recipts=mysql_query("SELECT p.name as name ,r.amountpaid as cost ,r.dateadded a
       <li class="bg_ly"> <a href="patients.php"> <i class=" icon-globe"></i>Clients </a> </li>
       <li class="bg_lo"> <a href="#"> <i class="icon-group"></i> Manage Users </a> </li>
       <li class="bg_ls"> <a href="receipts.php"> <i class="icon-signal"></i>Payments Made</a> </li>
+      <li class="bg_lg"> <a href="init.php"> <i class="icon-shopping-cart"></i>Reconcile Stock</a> </li>
     </ul>
   </div>
   <div class="container-fluid">
