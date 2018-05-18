@@ -112,14 +112,14 @@ $result3=mysql_query("SELECT * from messages where clientid='$id' order by id de
                   <tr>
                     <td><?php echo $inv['invoicenumber']?></td>
                     <td><?php echo $inv['totalcost']?></td>
-                    <?php if($status=0){
+                    <?php if($status=='0'){
 
                       echo "<td>Unpaid</td>";
-                    }elseif ($status=1) {
+                    }elseif ($status=='1') {
                       echo "<td>Partially Paid</td>";
-                    }elseif ($status=2) {
+                    }elseif ($status=='2') {
                       echo "<td>Fully Paid</td>";
-                    }elseif ($status=5) {
+                    }elseif ($status=='5') {
                       echo "<td>Voided Invoice</td>";
                     }
                       ?>
