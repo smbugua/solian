@@ -33,6 +33,7 @@ $result3=mysql_query("SELECT * from messages where clientid='$id' order by id de
         <li class="bg_lb"> <a href="#"> <i class="icon-money"></i> Part Paid Invoices <?php echo $partpaidinvoicecount['c']?>  </a> </li>
         <li class="bg_lo"> <a href="#"> <i class="icon-money"></i> UnPaid Invoices <?php echo $upinvoicecount['c']?>  </a> </li>
         <li class="bg_ly"> <a href="#"> <i class="icon-money"></i> Voided Invoices <?php echo $voidedinvoicecount['c']?>  </a> </li>
+        <li class="bg_lb"> <a href="customerstatement.php?id=<?php echo $id ?>"> <i class="icon-signal"></i> Customer Statement</a> </li>
 
       </ul>
     </div>
