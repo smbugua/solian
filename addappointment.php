@@ -40,7 +40,6 @@ $brands=mysql_query("SELECT id,name FROM brand ORDER BY name ASC");
                   <select name="type" class="form-control">
                  <option value="Enquiry">Enquiry</option>
                  <option value="Consultation">Consultation</option>
-                 <option value="Checkup">Checkup</option>
                  <option value="Payment">Payment</option>
                   </select>
                   </div>

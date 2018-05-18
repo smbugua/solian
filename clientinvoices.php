@@ -1,7 +1,7 @@
 <?php
 include('header.php');
 $id=$_GET['id'];
-$query="SELECT inv.id as id, inv.totalcost as tot ,inv.dateadded as dateadded,p.name as name , p.tel as tel from invoices inv inner join patients p on p.id=inv.patientid where p.id='$id' order by  inv.dateadded  asc";
+$query="SELECT inv.id as id, inv.totalcost as tot ,inv.dateadded as dateadded,p.name as name , p.tel as tel from invoices inv inner join patients p on p.id=inv.patientid where p.id='$id' && inv.status!='5' order by  inv.dateadded  asc";
 $result=mysql_query($query);
 //$pde=mysql_fetch_array($result);
 ?>
@@ -28,6 +28,7 @@ $result=mysql_query($query);
                   <th>Total Cost</th>
                   <th>Dateadded</th>
                   <th>View</th>
+                  <th>Payment Plans</th>
                   <th>Void</th>
                 </tr>
               </thead>
@@ -43,8 +44,9 @@ $result=mysql_query($query);
                   <td><?php echo $row['name']?></td>
                   <td><?php echo $row['tel']?></td>
                   <td><?php echo $row['tot']?></td>
-                  <td><?php echo $row['dateadded']?></td>                  
-                  <td><a href="invoice.php?id=<?php echo $row['id']?>" class="btn btn-primary btn-mini"><i class="icon icon-camera-retro"></i> View</a> </td>
+                  <td><?php echo $row['dateadded']?></td>                
+                  <td><a href="invoice.php?id=<?php echo $row['id']?>" class="btn btn-primary btn-mini"><i class="icon icon-camera-retro"></i> View</a> </td>                 
+                  <td><a href="invoiceplan.php?id=<?php echo $row['id']?>" class="btn btn-success btn-mini"><i class="icon icon-money"></i> Payment Plan</a> </td>
                   <td><a href="actionclass.php?action=void&&id=<?php echo $row['id']?>" class="btn btn-danger btn-mini"><i class="icon icon-trash"></i> Void</a> </td>
                 </tr>
                 <?php }?>

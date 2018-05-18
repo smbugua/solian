@@ -82,7 +82,7 @@ $status=$inv['status'];
                   <thead>
                     
                     <tr>
-                      <th class="head0">Porduct</th>
+                      <th class="head0">Product</th>
                       <th class="head1">Product Type</th>
                       <th class="head0 right">Brand</th>
                       <th class="head0 right">Qty</th>
@@ -93,12 +93,12 @@ $status=$inv['status'];
                   <tbody>
                       <?php while($row=mysql_fetch_array($result)){?>
                     <tr>
-                      <th class="right"><?php echo $row[0]?></th>
-                      <th class="right"><?php echo $row[1]?></th>
-                      <th class="right"><?php echo $row[2]?></th>
-                      <th class="right"><?php echo $row[3]?></th>
-                      <th class="right"><?php echo $row[4]?></th>
-                      <th class="right"><?php echo $row[5]?></th>
+                      <td class="right"><?php echo $row[0]?></td>
+                      <td class="right"><?php echo $row[1]?></td>
+                      <td class="right"><?php echo $row[2]?></td>
+                      <td class="right"><?php echo $row[3]?></td>
+                      <td class="right"><?php echo $row[4]?></td>
+                      <td class="right"><?php echo $row[5]?></td>
                     </tr>
                     <?php }?>
                     

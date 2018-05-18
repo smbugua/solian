@@ -1,6 +1,6 @@
 <?php
-include('header.php');
-$id=$_REQUEST['id'];
+include 'header.php';
+$id=$_GET['id'];
 $main=mysql_fetch_array(mysql_query("SELECT * FROM settings"));
 $company_name=$main['main_name'];
 $company_location=$main['main_location'];
@@ -9,7 +9,7 @@ $company_address=$main['main_address'];
 $email=$main['email'];
 $inv=mysql_fetch_array(mysql_query("SELECT i.invoicenumber as invoicenumber,i.dateadded as dateadded,p.name as name,i.totalcost as invoicetotal from invoices i inner join patients p on p.id=i.patientid where i.id='$id'"));
 $count=$inv['invoicenumber'];
-$result=mysql_query("SELECT p.productname as productname, it.name as itemtypename ,b.name as brandname , itms.quantity as quantity , itms.unitprice as price ,itms.total as totalcost  from products p inner join itemtype it on it.id=p.itemtypeid inner join brand b on b.id=p.brandid inner join invoiceitems itms on itms.productid=p.id inner join invoices i on i.id=itms.invoiceid where i.id='$id'");
+$result=mysql_query("SELECT ii.installment as installment,ii.status as status ,ii.datedue as datedue  from invoice_installments ii inner join invoice_paymentplan ip on ip.id=ii.invoiceplanid where ip.invoiceid='$id'");
 
 $total=$inv['invoicetotal'];
 
@@ -62,9 +62,17 @@ $total=$inv['invoicetotal'];
                       <td>Issue Date:</td>
                       <td><strong><input type="date" name="dateadded" value="<?php echo $inv['dateadded']?>" readonly=""></strong></td>
                     </tr>
+                    <tr>
                     <td class="width30">Client:</td>
                     <td class="width70">
                      <input type="text" name="name" value="<?php echo $inv['name']?>" readonly="">
+
+                    </td>
+                  </tr>
+                    <tr>
+                    <td class="width30">Amount Due:</td>
+                    <td class="width70">
+                     <input type="text" name="name" value="<?php echo $total?>" readonly="">
 
                     </td>
                   </tr>
@@ -77,26 +85,28 @@ $total=$inv['invoicetotal'];
               <div class="span12">
                 <table class="table table-bordered table-invoice-full">
                   <thead>
-                   <a href="#myAlert" data-toggle="modal" class="btn btn-success pull-right"><i class="icon icon-plus"></i> Add Item</a> 
                     
                     <tr>
-                      <th class="head0">Product</th>
-                      <th class="head1">Product Type</th>
-                      <th class="head0 right">Brand</th>
-                      <th class="head0 right">Qty</th>
-                      <th class="head1 right">Price</th>
-                      <th class="head0 right">Amount</th>
+                      <th class="head0">Installment Amount</th>
+                      <th class="head1">Date Due</th>
+                      <th class="head0 right">Status</th>
+                      <th class="head0 ">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                       <?php while($row=mysql_fetch_array($result)){?>
                     <tr>
                       <td class="right"><?php echo $row[0]?></td>
-                      <td class="right"><?php echo $row[1]?></td>
                       <td class="right"><?php echo $row[2]?></td>
-                      <td class="right"><?php echo $row[3]?></td>
-                      <td class="right"><?php echo $row[4]?></td>
-                      <td class="right"><?php echo $row[5]?></td>
+                      <?php 
+                      $status=$row[1];
+                      if($status=='0'){
+
+                      echo "<td>Unpaid</td>";
+                    }elseif ($status=='1') {
+                      echo "<td>Paid</td>";
+                    } ?>
+                    <td><a href="invoice.php?id=<?php echo $id?>" class="btn btn-success " >Process Payement</a> </td>
                     </tr>
                     <?php }?>
                     

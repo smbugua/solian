@@ -73,6 +73,15 @@ mysql_query("INSERT INTO receipts (invoiceid,amountdue,amountpaid,balance,paymen
 			mysql_query("UPDATE invoices set status='2'where id='$id'");
 
 		}
+/*
+*set status on installments table to paid
+*
+**/
+$getinst=mysql_fetch_array(mysql_query("SELECT ii.id as id   from invoice_installments ii inner join invoice_paymentplan ip on ip.id=ii.invoiceplanid where ip.invoiceid='$id' and ii.status='0' order by ii.id asc LIMIT 1"));
+$inst=$getinst[0];
+mysql_query("UPDATE invoice_installments set status=1 where id='$inst'");
+
+
 
 echo "<script>alert('Payment Added!')</script>";
 		echo "<script>location.replace('receipts.php')</script>";

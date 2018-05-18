@@ -10,7 +10,7 @@ $apikey     = "b7632588b2b1717cd825fc2561c1a701c7c8b3e15c626380dc03be9fc0049d89"
 // Specify the numbers that you want to send to in a comma-separated list
 // Please ensure you include the country code (+254 for Kenya in this case)
 //$recipients = "+254722856900,+254728944815,+254724661481,+254716671496";
-$q=mysql_query("SELECT p.tel as tel ,p.name as name,a.type as type ,a.datescheduled as datea from appointments a inner join patients p on p.id=a.patientid where a.id='$id' order by a.datemodified desc ");
+$q=mysql_query("SELECT p.tel as tel ,p.name as name,a.type as type ,a.datescheduled as datea, a.patientid as pid from appointments a inner join patients p on p.id=a.patientid where a.id='$id' order by a.datemodified desc ");
 while($query=mysql_fetch_array($q)){
 $phone=$query['tel'];
 $name=$query['name'];
@@ -19,6 +19,10 @@ $recipients=$phone;
 // And of course we want our recipients to know what we really do
 $message    ="Hello ".$name." your appointment on".$dateadded." has been booked.Solian Investments Thanks you for your Business!.";
 $from = "SOLIAN";
+
+$patientid=$query['pid'];
+$user=$_SESSION['user'];
+mysql_query("INSERT iNTO  messages(clientid,msg,tel,sender)values('$patientid','$message','$phone','$user')");
 // Create a new instance of our awesome gateway class
 $gateway    = new AfricasTalkingGateway($username, $apikey);
 // NOTE: If connecting to the sandbox, please add the sandbox flag to the constructor:
