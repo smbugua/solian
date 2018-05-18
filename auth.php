@@ -79,4 +79,11 @@ function longdate($timestamp)
 {
 return date("l F jS Y", $timestamp);
 }
+
+function customerInfo($var,$id){
+	$info=mysql_fetch_array(mysql_query("SELECT $var from patients where id='$id' "));
+	$var=$info[0];
+	return $var;
+}
+
 ?>
