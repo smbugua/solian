@@ -107,16 +107,16 @@ $total=$inv['invoicetotal'];
                   <h4><span>Amount Due:</span><?php //echo $total ?></h4>
                   <input type="number" id="total" readonly="" value="<?php echo $total ?>"> 
                   <br>
-                  <form action="paymentstructure.php" method="post">
+                  <form action="paymentstructure.php?id=<?php echo $id?>" method="post">
                    <label>Choose Payment Structure</label>
-                  <select name="struct" class="form-control">
+                  <select name="planid" class="form-control">
                     <option value="1">Cash</option>
                     <option value="2">Installments</option>
                   </select>
                   <label>Period</label>
-                  <input type="text" name="period" required="" class="form-control">
+                  <input type="text" name="period" required="" id="period" onkeyup="javascript:check()" class="form-control">
                   <label>Installments</label>
-                  <input type="text" name="installments" disabled=""  class="form-control">
+                  <input type="text" name="installments" id="installments" readonly="" =""  class="form-control">
                   <br>
                   <button class="btn btn-primary btn-large pull-right" >Submit Invoice</button> 
                 </form>
@@ -189,6 +189,13 @@ $total=$inv['invoicetotal'];
 
 </html>
 <script type="text/javascript">
-  
+ function check(){
+ var a= document.getElementById('total').value;
+ var b= document.getElementById('period').value;
+ amt=parseInt(a)/parseInt(b);
+ document.getElementById('installments').value= amt.toFixed(2);
+ 
+ 
+ }	 
 
 </script>
