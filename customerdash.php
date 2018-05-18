@@ -27,7 +27,7 @@ $result3=mysql_query("SELECT * from messages where clientid='$id' order by id de
     <div class="quick-actions_homepage">
       <ul class="quick-actions">
         <li class="bg_lb"> <a href="#"> <i class="icon-user"></i> <span class="label label-important"></span><?php echo $c['clientname']?></a> </li>
-        <li class="bg_lg"> <a href="#"> <i class="icon-signal"></i> <?php echo $c['clienttel']?></a> </li>       
+        <li class="bg_lg"> <a href="#"> <i class="icon-phone"></i> <?php echo $c['clienttel']?></a> </li>       
          <li class="bg_ls"> <a href="#"> <i class="icon-money"></i><span class="label label-success"></span>Total Invoices Raised <?php echo $invoicecount['c']?>  </a> </li>
         <li class="bg_lg"> <a href="#"> <i class="icon-money"></i> Fully Paid Invoices <?php echo $paidinvoicecount['c']?>  </a> </li>
         <li class="bg_lb"> <a href="#"> <i class="icon-money"></i> Part Paid Invoices <?php echo $partpaidinvoicecount['c']?>  </a> </li>

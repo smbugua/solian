@@ -69,6 +69,11 @@ function getInvoicePatient($invoiceid){
 $p=$invoicequery['patientid'];
 return $p;
 }
+function getSmsCount(){
+	$stockquery=mysql_fetch_array(mysql_query("SELECT count(id) as smstot from messages "));
+$stock=$stockquery['smstot'];
+return $stock;
+}
 
 function longdate($timestamp)
 {

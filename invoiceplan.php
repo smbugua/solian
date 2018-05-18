@@ -105,37 +105,23 @@ $total=$inv['invoicetotal'];
                       echo "<td>Unpaid</td>";
                     }elseif ($status=='1') {
                       echo "<td>Paid</td>";
-                    } ?>
-                    <td><a href="invoice.php?id=<?php echo $id?>" class="btn btn-success " >Process Payement</a> </td>
+                    }?>
+                    <?php if($status=='0'){?>
+                    <td><a href="invoice.php?id=<?php echo $id?>" class="btn btn-danger " >Process Payement</a> </td>
+                    <?php }elseif($status=='1'){?>
+
+                    <td><a href="#" class="btn btn-success " >Paid</a> </td>
+                    <?php } ?>
                     </tr>
                     <?php }?>
                     
                   </tbody>
                 </table>
-                <div class="pull-right">
-
-                  <h4><span>Amount Due:</span><?php //echo $total ?></h4>
-                  <input type="number" id="total" readonly="" value="<?php echo $total ?>"> 
-                  <br>
-                  <form action="paymentstructure.php?id=<?php echo $id?>" method="post">
-                   <label>Choose Payment Structure</label>
-                  <select name="planid" class="form-control">
-                    <option value="1">Cash</option>
-                    <option value="2">Installments</option>
-                  </select>
-                  <label>Period</label>
-                  <input type="text" name="period" required="" id="period" onkeyup="javascript:check()" class="form-control">
-                  <label>Installments</label>
-                  <input type="text" name="installments" id="installments" readonly="" =""  class="form-control">
-                  <br>
-                  <button class="btn btn-primary btn-large pull-right" >Submit Invoice</button> 
-                </form>
-                </div></div>
+             </div>
               </div>
             </div>
 
-          </div>
-        </div>
+         
       </div>
     </div>
   </div>
@@ -154,37 +140,7 @@ $total=$inv['invoicetotal'];
                 <h3>Add Billing Item</h3>
               </div>
 
-              <div class="modal-body">
-                <form method="post" action="actionclass.php?action=addinvoiceitem&&invoiceid=<?php echo $id?>&&clientid=">
-                   <div class="control-group">
-                  <label class="control-label">Product</label>
-                  <div class="controls">
-                    <select name="product" class="form-control" id="project" >
-                    <?php
-                    $productresult=mysql_query("SELECT id,productname from products");
-                    while($productrow=mysql_fetch_array($productresult)){
-                    ?>  
-                    <option value="<?php echo $productrow[0]?>"><?php echo $productrow[1]?></option>
-                    <?php }?> 
-                    </select>
-
-                  <label class="control-label">Quantity</label>
-                    <input type="text" name="quantity" class="form-control">
-                  <label class="control-label">Price</label>
-                    <input type="text" name="price" class="form-control">
-                  <label class="control-label">Plot No</label>
-                    <select name="plotno" class="form-control" id="plotno">
-                    <?php
-                    $productresult=mysql_query("SELECT p.id as productid,ps.id as id ,ps.plotno as plotno , p.productname as productname from plotstatus ps inner join products p on p.id=ps.projectid where ps.id not in(SELECT plotid from plot_customers ) and ps.status='0' group by p.id , ps.id asc ");
-                    while($productrow=mysql_fetch_array($productresult)){
-                    ?>  
-                    <option value="<?php echo $productrow['id']?>"><?php echo $productrow['productname']."  No ".$productrow['plotno']  ?></option>
-                    <?php }?> 
-                    </select>
-
-                   </div>
-                </div>
-                </div>
+           
               <div class="modal-footer"> <button type="submit" class="btn btn-primary" >Confirm</button> </div>
             </form>
             </div>

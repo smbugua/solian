@@ -3,6 +3,7 @@ include('header.php');
 $paymentsquery=mysql_query("SELECT p.name as name ,i.totalcost as cost ,i.dateadded as dateadded FROM Invoices i inner join patients p on p.id=i.patientid ORDER BY i.id DESC LIMIT 5");
 
 $recipts=mysql_query("SELECT p.name as name ,r.amountpaid as cost ,r.dateadded as dateadded FROM receipts r inner join invoices i on i.id=r.invoiceid inner join patients p on p.id=i.patientid ORDER BY r.id DESC LIMIT 5");
+
 ?>
   <div id="content-header">
     <div id="breadcrumb"> <a href="index.html" title="Go to Home" class="tip-bottom"><i class="icon-home"></i> Home</a></div>
@@ -11,10 +12,11 @@ $recipts=mysql_query("SELECT p.name as name ,r.amountpaid as cost ,r.dateadded a
     <ul class="quick-actions">
       <li class="bg_lb"> <a href="index.php"> <i class="icon-dashboard"></i> My Dashboard </a> </li>
       <li class="bg_lg"> <a href="products.php"> <i class="icon-shopping-cart"></i> Products</a> </li>
-      <li class="bg_ly"> <a href="patients.php"> <i class=" icon-globe"></i>Clients </a> </li>
-      <li class="bg_lo"> <a href="#"> <i class="icon-group"></i> Manage Users </a> </li>
-      <li class="bg_ls"> <a href="receipts.php"> <i class="icon-signal"></i>Payments Made</a> </li>
+      <li class="bg_ly"> <a href="patients.php"> <i class=" icon-group"></i>Clients </a> </li>
+      <!--li class="bg_lo"> <a href="#"> <i class="icon-group"></i> Manage Users </a> </li-->
+      <li class="bg_ls"> <a href="receipts.php"> <i class="icon-globe"></i>Payments Made</a> </li>
       <li class="bg_lg"> <a href="init.php"> <i class="icon-shopping-cart"></i>Reconcile Stock</a> </li>
+      <li class="bg_lr"> <a href="#"> <i class="icon-signal"></i><?php echo getSmsCount()?> SMS Sent</a> </li>
     </ul>
   </div>
   <div class="container-fluid">
