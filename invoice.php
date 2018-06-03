@@ -112,8 +112,10 @@ $status=$inv['status'];
                       <td class="right"><strong>Subtotal</strong> <br>
                         <strong>Tax (16%)</strong> <br>
                         <strong>Total</strong></td>
-                      <td class="right"><strong><?php echo $subtotal?> <br>
-                        <?php echo $tax?> <br>
+                      <!--td class="right"><strong><?php echo $subtotal?> <br>
+                        <?php echo $tax?> <br-->
+                      <td class="right"><strong><?php echo $total?> <br>
+                        <?php echo "0"?> <br>
                         <?php echo $total?></strong></td>
                     </tr>
                   </tbody>

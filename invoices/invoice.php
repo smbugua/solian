@@ -11,7 +11,7 @@ $email=$main['email'];
 $website=$main['website'];
 $inv=mysql_fetch_array(mysql_query("SELECT i.invoicenumber as invoicenumber,i.dateadded as dateadded,p.name as name,i.totalcost as invoicetotal ,i.status as status ,p.address as paddress,p.town as ptown ,p.tel as ptel,p.email as pemail  from invoices i inner join patients p on p.id=i.patientid where i.id='$id'"));
 $count=$inv['invoicenumber'];
-$result=mysql_query("SELECT p.productname as productname, it.name as itemtypename ,b.name as brandname , itms.quantity as quantity , itms.unitprice as price ,itms.total as totalcost  from products p inner join itemtype it on it.id=p.itemtypeid inner join brand b on b.id=p.brandid inner join invoiceitems itms on itms.productid=p.id inner join invoices i on i.id=itms.invoiceid where i.id='$id'");
+$result=mysql_query("SELECT p.productname as productname, it.name as itemtypename ,b.name as brandname , itms.quantity as quantity , itms.unitprice as price ,itms.total as totalcost ,ps.plotno as plotno  from products p inner join itemtype it on it.id=p.itemtypeid inner join brand b on b.id=p.brandid inner join invoiceitems itms on itms.productid=p.id inner join invoices i on i.id=itms.invoiceid inner join plotstatus ps on ps.id=itms.plotid where i.id='$id'");
 
 $total=$inv['invoicetotal'];
 $tax=.16*$total;
@@ -32,8 +32,8 @@ $invoice = new Konekt\PdfInvoice\InvoicePrinter();
   $invoice->setTo(array("Purchaser Name",$inv['name'],$inv['paddress'],$inv['ptel'],$inv['pemail']));
   /* Adding Items in table */
   while ($row=mysql_fetch_array($result)) {
-   $producttax=$row['price']*.16;
-  $invoice->addItem($row['productname'],$row['itemtypename'],$row['quantity'],$producttax,$row['price'],0,$row['totalcost']); 
+   $producttax=0;
+  $invoice->addItem($row['productname'],$row['brandname'].' Plot no '.$row['plotno'],$row['quantity'],$producttax,$row['price'],0,$row['totalcost']); 
   }
   /* Add totals */
   $invoice->addTotal("Total",$total);
