@@ -25,6 +25,7 @@ $result=mysql_query($query);
                   <th>Client Tel</th>
                   <th>Total Cost</th>
                   <th>Dateadded</th>
+                  <th>Payment Plan</th>
                   <th>View</th>
                 </tr>
               </thead>
@@ -40,7 +41,8 @@ $result=mysql_query($query);
                   <td><?php echo $row['name']?></td>
                   <td><?php echo $row['tel']?></td>
                   <td><?php echo $row['tot']?></td>
-                  <td><?php echo $row['dateadded']?></td>                  
+                  <td><?php echo $row['dateadded']?></td>               
+                  <td><a href="invoiceplan.php?id=<?php echo $row['id']?>" class="btn btn-success btn-mini"><i class="icon icon-money"></i> Payment Plan</a> </td>             
                   <td><a href="invoice.php?id=<?php echo $row['id']?>" class="btn btn-primary btn-mini"><i class="icon icon-camera-retro"></i> View</a> </td> 
                 </tr>
                 <?php }?>
