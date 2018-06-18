@@ -2,6 +2,8 @@
 include('header.php');
 $id=$_REQUEST['id'];
 $main=mysql_fetch_array(mysql_query("SELECT * FROM settings"));
+$query=mysql_query("SELECT invoicenumber , totalcost,id from invoices where patientid='$id'");
+
 
 
 ?>
@@ -46,7 +48,6 @@ $main=mysql_fetch_array(mysql_query("SELECT * FROM settings"));
                 <h4>OPEN ACCOUNTS</h4>
                 <table class="table table-bordered table-invoice-full">
                   <thead>
-                  	<th>Account No</th>
                     <th>Invoice No</th>
                     <th>Total Amount</th>
                     <th>Amount Paid</th>
@@ -54,11 +55,16 @@ $main=mysql_fetch_array(mysql_query("SELECT * FROM settings"));
                     <th>Paymet Plan</th>
                   </thead>
                   <tbody>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <?php while($r=mysql_fetch_array($query)){
+                      $invid=$r['id'];
+                      ?>
+
+                    <td><?php echo $r['invoicenumber'] ;?></td>
+                    <td><?php echo $r['totalcost']?></td>
+                    <td><?php echo paidAmount($invid);?></td>
+                    <td><?php echo unpaidAmount($invid)?></td>
+                    <td><?php echo paymentPlan($invid)?></td>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>
@@ -76,11 +82,15 @@ $main=mysql_fetch_array(mysql_query("SELECT * FROM settings"));
                     <th>Paymet Plan</th>
                   </thead>
                   <tbody>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <?php while($r=mysql_fetch_array($query)){
+                      $invid=$r['id'];
+                      ?>
+                    <td><?php echo $r['invoicenumber'] ;?></td>
+                    <td><?php echo $r['totalcost']?></td>
+                    <td><?php echo paidAmount($invid);?></td>
+                    <td><?php echo unpaidAmount($invid)?></td>
+                    <td><?php echo paymentPlan($invid)?></td>
+                    <?php } ?>
                   </tbody>
                 </table>
               </div>

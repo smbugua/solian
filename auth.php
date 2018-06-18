@@ -85,5 +85,26 @@ function customerInfo($var,$id){
 	$var=$info[0];
 	return $var;
 }
-
+function paidAmount($id)
+{
+	$r=mysql_fetch_array(mysql_query("SELECT sum(amountpaid) as amountpaid from receipts where invoiceid='$id' "));
+	$result=$r['amountpaid'];
+	return $result;
+}
+function unpaidAmount($id)
+{
+	$r=mysql_fetch_array(mysql_query("SELECT amountdue from receipts where invoiceid='$id' order by id desc limit 1 "));
+	$result=$r['amountdue'];
+	return $result;
+}
+function paymentPlan($id){
+		$r=mysql_fetch_array(mysql_query("SELECT planid from invoice_paymentplan where invoiceid='$id' "));
+	$planid=$r['planid'];
+	if ($planid=="0") {
+		$result="CASH";
+	}elseif ($planid=="1") {
+		$result="INSTALLMENT";
+	}
+	return $result;
+}
 ?>
