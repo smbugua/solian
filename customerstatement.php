@@ -43,7 +43,46 @@ $main=mysql_fetch_array(mysql_query("SELECT * FROM settings"));
             </div>
             <div class="row-fluid">
               <div class="span12">
+                <h4>OPEN ACCOUNTS</h4>
                 <table class="table table-bordered table-invoice-full">
                   <thead>
-                  	<th></th>
+                  	<th>Account No</th>
+                    <th>Invoice No</th>
+                    <th>Total Amount</th>
+                    <th>Amount Paid</th>
+                    <th>Amount Due</th>
+                    <th>Paymet Plan</th>
                   </thead>
+                  <tbody>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="row-fluid">
+              <div class="span12">
+                <h4>Closed ACCOUNTS</h4>
+                <table class="table table-bordered table-invoice-full">
+                  <thead>
+                    <th>Account No</th>
+                    <th>Invoice No</th>
+                    <th>Total Amount</th>
+                    <th>Amount Paid</th>
+                    <th>Amount Due</th>
+                    <th>Paymet Plan</th>
+                  </thead>
+                  <tbody>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
