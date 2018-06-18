@@ -72,7 +72,7 @@ $query2=mysql_query("SELECT invoicenumber , totalcost,id from invoices where pat
             </div>
             <div class="row-fluid">
               <div class="span12">
-                <h4>Closed ACCOUNTS</h4>
+                <h4>CLOSED ACCOUNTS</h4>
                 <table class="table table-bordered table-invoice-full">
                   <thead>
                     <th>Account No</th>
