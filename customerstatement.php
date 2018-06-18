@@ -2,7 +2,8 @@
 include('header.php');
 $id=$_REQUEST['id'];
 $main=mysql_fetch_array(mysql_query("SELECT * FROM settings"));
-$query=mysql_query("SELECT invoicenumber , totalcost,id from invoices where patientid='$id'");
+$query=mysql_query("SELECT invoicenumber , totalcost,id from invoices where patientid='$id' and  status !='2' || status !='5' ");
+$query2=mysql_query("SELECT invoicenumber , totalcost,id from invoices where patientid='$id' and  status ='2' ");
 
 
 
@@ -82,14 +83,14 @@ $query=mysql_query("SELECT invoicenumber , totalcost,id from invoices where pati
                     <th>Paymet Plan</th>
                   </thead>
                   <tbody>
-                    <?php while($r=mysql_fetch_array($query)){
-                      $invid=$r['id'];
+                    <?php while($r2=mysql_fetch_array($query2)){
+                      $invid2=$r2['id'];
                       ?>
-                    <td><?php echo $r['invoicenumber'] ;?></td>
-                    <td><?php echo $r['totalcost']?></td>
-                    <td><?php echo paidAmount($invid);?></td>
-                    <td><?php echo unpaidAmount($invid)?></td>
-                    <td><?php echo paymentPlan($invid)?></td>
+                    <td><?php echo $r2['invoicenumber'] ;?></td>
+                    <td><?php echo $r2['totalcost']?></td>
+                    <td><?php echo paidAmount($invid2);?></td>
+                    <td><?php echo unpaidAmount($invid2)?></td>
+                    <td><?php echo paymentPlan($invid2)?></td>
                     <?php } ?>
                   </tbody>
                 </table>
