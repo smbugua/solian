@@ -1,5 +1,6 @@
 <?php // rnfunctions.php
-error_reporting(E_ALL ^ E_DEPRECATED);
+//error_reporting(E_ALL ^ E_DEPRECATED);
+ini_set('display_errors',0);
 $dbhost = 'localhost'; // Unlikely to require changing
 $dbname = 'solian'; // Modify these...
 $dbuser = 'root'; // ...variables according
