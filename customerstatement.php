@@ -54,17 +54,20 @@ $query2=mysql_query("SELECT invoicenumber , totalcost,id from invoices where pat
                     <th>Amount Paid</th>
                     <th>Amount Due</th>
                     <th>Paymet Plan</th>
+                    <th>Statement</th>
                   </thead>
                   <tbody>
                     <?php while($r=mysql_fetch_array($query)){
                       $invid=$r['id'];
                       ?>
-
+<tr>
                     <td><?php echo $r['invoicenumber'] ;?></td>
                     <td><?php echo $r['totalcost']?></td>
                     <td><?php echo paidAmount($invid);?></td>
                     <td><?php echo unpaidAmount($invid)?></td>
                     <td><?php echo paymentPlan($invid)?></td>
+                    <td><a href="viewstatement.php?id=<?php echo $invid?>" class="btn btn-success btn-mini" >View Statement</a> </td>
+                    </tr>
                     <?php } ?>
                   </tbody>
                 </table>
