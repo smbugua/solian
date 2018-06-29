@@ -3,9 +3,10 @@ include('header.php');
 // Be sure to include the file you've just downloaded
 require_once('AfricasTalkingGateway.php');
 $id=$_REQUEST['id'];
+$smssettings=mysql_fetch_array(mysql_query("SELECT username , senderid,api from smssettings "));
 // Specify your login credentials
-$username   = "Newmove";
-$apikey     = "b7632588b2b1717cd825fc2561c1a701c7c8b3e15c626380dc03be9fc0049d89";
+$username   = $smssettings['username'];
+$apikey     = $smssettings['api'];
 // NOTE: If connecting to the sandbox, please use your sandbox login credentials
 // Specify the numbers that you want to send to in a comma-separated list
 // Please ensure you include the country code (+254 for Kenya in this case)
@@ -17,8 +18,8 @@ $name=$query['name'];
 $dateadded=$query['datea'];
 $recipients=$phone;
 // And of course we want our recipients to know what we really do
-$message    ="Hello ".$name." your appointment on".$dateadded." has been booked.Solian Investments Thanks you for your Business!.";
-$from = "SOLIAN";
+$message    ="Hello ".$name." your appointment on".$dateadded." has been booked.Barletta Limited Thanks you for your Business!.";
+$from = $smssettings['senderid'];
 
 $patientid=$query['pid'];
 $user=$_SESSION['user'];

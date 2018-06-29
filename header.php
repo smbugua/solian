@@ -93,6 +93,7 @@ echo <<<HeaderFunction
     <li><a href="grid.html"><i class="icon icon-fullscreen"></i> <span>Full width</span></a></li-->
     <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Customers</span> <span class="label label-important"></span></a>
       <ul>
+        <li><a href="leads.php">Shortcode Lists</a></li>
         <li><a href="patients.php">Customer Lists</a></li>
         <li><a href="addpatient.php">Add Customer</a></li>
         <li><a href="searchpatient.php">Search Customer</a></li>
