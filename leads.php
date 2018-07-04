@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-$query="SELECT * from recievedmessages order by  datemodified desc";
+$query="SELECT * from receivedmessages order by  datemodified desc";
 $result=mysql_query($query);
 ?>
   <div id="content-header">
