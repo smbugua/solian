@@ -36,7 +36,7 @@ $result=mysql_query($query);
                 $no++;
                 ?>
                   <td><?php echo $no?></td>
-                  <td><?php echo $row['pnoneno']?></td>
+                  <td><?php echo $row['phoneno']?></td>
                   <td><?php echo $row['message']?></td>
                   <td><?php echo $row['shortcode']?></td>
                   <td><?php echo $row['datemodified']?></td>    
