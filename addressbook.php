@@ -1,6 +1,6 @@
 <?php
 include('header.php');
-$query="SELECT * from addressbook where status='0' order by  name asc";
+$query="SELECT * from contacts order by  name asc";
 $result=mysql_query($query);
 ?>
   <div id="content-header">
@@ -9,18 +9,42 @@ $result=mysql_query($query);
   </div>
   <div class="container-fluid">
     <hr>
-    <div class="row-fluid">
-      <div class="span12">
+      <div class="row-fluid">
+    <div class="span6">
+      
 
-<div class="widget-box">
-  <br>
-  <div class="button-class">
-              <form action="upload">
-                
-              </form>
-            <a href="uploads/samples/sample.csv" class="btn btn-success">Download Sample File</a>
+  <div class="widget-box">
+      <div class="widget-title"> <span class="icon"><i class="icon-th">
+            
+          </i></span>
+            <h5>Bulk SMS Actions</h5>
+          </div>
+            <div class="widget-content nopadding">
+
+          <table class="table table-bordered ">
+            <thead></thead>
+            <tbody>
+              <tr>
+               <form enctype="multipart/form-data" method="post" action="upload.php">
+              <td> <label>Upload a CSV file with phone details </label></td>
+              <td><input name="file" id="upload" type="file" accept=".csv" class="left"  /><button type="submit"  class="btn-danger" >Upload File</button></td>
+               </form>
+             </tr>
+             <tr>
+               <td> <label>Download a Sample csv file </label></td>
+               <td><a href="uploads/samples/sample.csv" class="btn btn-success">Download Sample File</a></td>
+             </tr>
+            </tbody>
+  </table>
+          </div>
+
     </div>
-    <br>
+  </div>
+  </div>
+<div class="row-fluid">
+  <div class="span12">
+
+    <div class="widget-box">
           <div class="widget-title"> <span class="icon"><i class="icon-th">
             
           </i></span>
@@ -34,8 +58,8 @@ $result=mysql_query($query);
                 <tr>
                   <th>#</th>
                   <th>Name</th>
-                  <th>Other Names</th>
-                  <th>Tel</th>
+                  <th>Mobile</th>
+                  <th>Email</th>
                   <th>Delete</th>
                 </tr>
               </thead>
@@ -49,9 +73,9 @@ $result=mysql_query($query);
                 ?>
                   <td><?php echo $no?></td>
                   <td><?php echo $row['name']?></td>
-                  <td><?php echo $row['other_names']?></td>
-                  <td><?php echo $row['phoneno']?></td>
-                  <td><a href="patientclass.php?action=delete_addressbook&&id=<?php echo $row['id']?>" class="btn btn-danger btn-mini"><i class="icon icon-trash"></i> Delete</a> </td>
+                  <td><?php echo $row['mobile']?></td>
+                  <td><?php echo $row['email']?></td>
+                  <td><a href="patientclass.php?action=delete_contact&&id=<?php echo $row['id']?>" class="btn btn-danger btn-mini"><i class="icon icon-trash"></i> Delete</a> </td>
                 </tr>
                 <?php }?>
               </tbody>
@@ -69,6 +93,7 @@ $result=mysql_query($query);
 
 </body>
 </html>
+
 
 <script src="js/jquery.min.js"></script> 
 <script src="js/jquery.ui.custom.js"></script> 

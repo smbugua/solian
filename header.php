@@ -94,6 +94,7 @@ echo <<<HeaderFunction
     <li class="submenu"> <a href="#"><i class="icon icon-user"></i> <span>Customers</span> <span class="label label-important"></span></a>
       <ul>
         <li><a href="leads.php">Shortcode Lists</a></li>
+        <li><a href="addressbook.php">Address Book</a></li>
         <li><a href="addressbook.php">Bulk SMS</a></li>
         <li><a href="patients.php">Customer Lists</a></li>
         <li><a href="addpatient.php">Add Customer</a></li>

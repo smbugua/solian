@@ -168,9 +168,9 @@ if ($_GET['action']=="aadpatient") {
 	$id=$_REQUEST['id'];
 	mysql_query("UPDATE patients SET status='1' where id='$id'");
 	echo "<script>location.replace('patients.php')</script>";
-}elseif ($_GET['action']=="delete_addressbook") {
+}elseif ($_GET['action']=="delete_contact") {
 	$id=$_REQUEST['id'];
-	mysql_query("DELETE from addressbook  where id='$id'");
+	mysql_query("DELETE from contacts  where id='$id'");
 	echo "<script>location.replace('addressbook.php')</script>";
 }
 
