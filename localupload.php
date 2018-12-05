@@ -31,7 +31,7 @@ if (isset($_POST)) {
         $file = "uploads/" . $_FILES['file']['name'].$datetime;
 
         $query = <<<eof
-        LOAD DATA INFILE '$file'
+        LOAD DATA LOCAL INFILE '$file'
          INTO TABLE contacts
          FIELDS TERMINATED BY ','
          IGNORE 1 LINES
