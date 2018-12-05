@@ -18,7 +18,7 @@ $result=mysql_query($query);
             
           </i></span>
             <h5>Bulk SMS Actions</h5>
-          </div>
+        </div>
             <div class="widget-content nopadding">
 
           <table class="table table-bordered ">
@@ -33,6 +33,36 @@ $result=mysql_query($query);
              <tr>
                <td> <label>Download a Sample csv file </label></td>
                <td><a href="uploads/samples/sample.csv" class="btn btn-success">Download Sample File</a></td>
+             </tr>
+            </tbody>
+  </table>
+          </div>
+
+    </div>
+  </div>  
+  <div class="span6">
+      
+
+  <div class="widget-box">
+      <div class="widget-title"> <span class="icon"><i class="icon-th">
+            
+          </i></span>
+            <h5>Enter Message to Queue</h5>
+        </div>
+            <div class="widget-content nopadding">
+
+          <table class="table table-bordered ">
+            <thead></thead>
+            <tbody>
+              <tr>
+               <form enctype="multipart/form-data" method="post" action="bulksms.php">
+              <td> <label>Message</label></td>
+              <td><textarea cols="15" rows="5"  name="msg"> </textarea></td>
+             </tr>
+             <tr>
+               <td> <label>Queue messages for sending </label></td>
+               <td><button  class="btn btn-success" type="submit">Send</button></td>
+               </form>
              </tr>
             </tbody>
   </table>
